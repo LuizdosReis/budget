@@ -8,6 +8,10 @@
           alt="circle" />
         <h2 class="text-2xl text-gray-800">Budget</h2>
       </div>
+      <button (click)="openMenu()" class="md:hidden">Menu</button>
     </nav>
   </div>
 </div>
+<app-menu
+  *ngIf="isMenuOpen"
+  class="md:hidden absolute w-full bg-white rounded-md shadow-lg"></app-menu>

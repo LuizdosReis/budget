@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page',
@@ -6,5 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page.component.scss'],
 })
 export class PageComponent {
+  isSidebarOpen = false;
+
   constructor() {}
+
+  openSideBar(): void {
+    this.isSidebarOpen = true;
+  }
 }
