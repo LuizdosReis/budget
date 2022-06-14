@@ -1,17 +1,33 @@
-<div class="shadow-lg py-5 px-7">
+<div
+  class="shadow-lg py-5 px-7 fixed z-10 w-full bg-white bg-opacity-70 backdrop-blur">
   <div class="container mx-auto">
     <nav class="flex justify-between">
       <div class="flex items-center space-x-3 lg:pr-16 pr-6">
         <img
-          class="cursor-pointe p-1 rounded-full"
+          class="cursor-pointe rounded-full"
           src="https://tuk-cdn.s3.amazonaws.com/can-uploader/header-1-svg1.svg"
           alt="circle" />
         <h2 class="text-2xl text-gray-800">Budget</h2>
       </div>
-      <button (click)="openMenu()" class="md:hidden">Menu</button>
+      <button (click)="openMenu()" class="md:hidden">
+        <div
+          class="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+          [ngClass]="{
+            'rotate-45': isMenuOpen,
+            'translate-y-1.5': isMenuOpen
+          }"></div>
+        <div
+          class="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+          [ngClass]="{
+            '-rotate-45': isMenuOpen,
+            '-translate-y-1': isMenuOpen
+          }"></div>
+      </button>
     </nav>
+    <div
+      *ngIf="isMenuOpen"
+      class="md:hidden my-4 p-6 rounded-xl shadow-lg bg-white">
+      <app-menu></app-menu>
+    </div>
   </div>
 </div>
-<app-menu
-  *ngIf="isMenuOpen"
-  class="md:hidden absolute w-full bg-white rounded-md shadow-lg"></app-menu>
