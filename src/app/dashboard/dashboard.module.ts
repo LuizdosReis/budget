@@ -3,9 +3,11 @@ import { SharedModule } from '../shared/shared.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SwiperModule } from 'swiper/angular';
+import { MonthSwiperComponent } from './components/month-swiper/month-swiper.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
-  imports: [DashboardRoutingModule, SharedModule],
+  declarations: [DashboardComponent, MonthSwiperComponent],
+  imports: [DashboardRoutingModule, SharedModule, SwiperModule],
 })
 export class DashboardModule {}

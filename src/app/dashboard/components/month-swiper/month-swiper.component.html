@@ -1,0 +1,9 @@
+<swiper [slidesPerView]="'auto'" class="mySwiper" [initialSlide]="5">
+  <ng-template swiperSlide *ngFor="let slide of slides; index as i">
+    <div
+      [ngClass]="{ 'text-white bg-black ': i === 5, 'text-slate-900': i !== 5 }"
+      class="h-10 px-6 font-semibold rounded-md border border-slate-200 mr-1 flex items-center">
+      {{ slide }}
+    </div>
+  </ng-template>
+</swiper>
