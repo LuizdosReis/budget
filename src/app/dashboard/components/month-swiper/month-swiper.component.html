@@ -2,7 +2,7 @@
   <ng-template swiperSlide *ngFor="let slide of slides; index as i">
     <button
       [class.bg-gray-200]="i === 5"
-      class="h-10 px-6 font-semibold rounded-md border border-slate-200 mr-1 text-gray-900 flex items-center hover:bg-gray-200">
+      class="h-10 px-6 font-semibold rounded-md border border-slate-200 mr-1 text-gray-900 flex items-center hover:bg-gray-200 hover:scale-105 transition-all duration-300 ease">
       {{ slide }}
     </button>
   </ng-template>
