@@ -3,8 +3,8 @@
     *ngFor="let menu of menus"
     [routerLink]="menu.link"
     [routerLinkActive]="['text-gray-900', 'bg-gray-200']"
-    class="flex items-center space-x-1 rounded-md px-2 py-3 first:mt-0 mt-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-    <span class="material-symbols-rounded mr-1"> {{ menu.icon }} </span>
-    {{ menu.name }}
+    class="flex gap-3 items-center rounded-md px-2 py-3 first:mt-0 mt-2 hover:bg-gray-200 focus:bg-gray-200 transition-all duration-300 ease hover:pl-4">
+    <span class="material-symbols-rounded"> {{ menu.icon }} </span>
+    <h3>{{ menu.name }}</h3>
   </a>
 </div>
