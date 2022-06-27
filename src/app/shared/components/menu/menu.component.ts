@@ -6,14 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
-  menus: { link: string; name: string }[] = [
+  menus: { link: string; name: string; icon: string }[] = [
     {
       link: '/dashboard',
       name: 'Dashboard',
+      icon: 'dashboard',
     },
     {
       link: '/accounts',
       name: 'Accounts',
+      icon: 'account_balance',
     },
   ];
 

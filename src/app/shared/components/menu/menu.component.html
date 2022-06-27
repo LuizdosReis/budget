@@ -4,6 +4,7 @@
     [routerLink]="menu.link"
     [routerLinkActive]="['text-gray-900', 'bg-gray-200']"
     class="flex items-center space-x-1 rounded-md px-2 py-3 first:mt-0 mt-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-    <span>{{ menu.name }}</span>
+    <span class="material-symbols-rounded mr-1"> {{ menu.icon }} </span>
+    {{ menu.name }}
   </a>
 </div>
