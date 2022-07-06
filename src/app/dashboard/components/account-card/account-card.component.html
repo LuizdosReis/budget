@@ -1,41 +1,38 @@
 <div
   class="px-2 py-3 mt-4 rounded-md border border-slate-200 shadow-lg hover:shadow-none transition-all duration-300">
-  <h3 class="mb-2 text-xl font-bold">Nubank</h3>
+  <h3 class="mb-2 text-xl font-bold">{{ account?.name }}</h3>
   <div class="flex flex-col md:flex-row w-full">
     <div class="pr-4 justify-between w-full">
       <div class="text-lg font-semibold flex justify-between">
         <p>Entradas</p>
-        <p>R$ 5000.00</p>
+        <p>{{ account?.totalDeposits | currency: account?.currencyCode }}</p>
       </div>
-      <div class="text-sm flex justify-between">
-        <p>Recebido</p>
-        <p>R$ 2000.00</p>
-      </div>
-      <div class="text-sm flex justify-between">
-        <p>Agendado</p>
-        <p>R$ 2000.00</p>
-      </div>
-      <div class="text-sm flex justify-between">
-        <p>Lançado</p>
-        <p>R$ 3000.00</p>
+      <div
+        class="text-sm flex justify-between"
+        *ngFor="let status of account?.depositStatus">
+        <p>{{ status }}</p>
+        <p>
+          {{
+            account?.totalDepositsBy(status) | currency: account?.currencyCode
+          }}
+        </p>
       </div>
     </div>
     <div class="pr-4 justify-between w-full">
       <div class="text-lg font-semibold flex justify-between">
         <p>Saídas</p>
-        <p>R$ 4000.00</p>
+        <p>{{ account?.totalWithdrawals | currency: account?.currencyCode }}</p>
       </div>
-      <div class="text-sm flex justify-between">
-        <p>Pago</p>
-        <p>R$ 2000.00</p>
-      </div>
-      <div class="text-sm flex justify-between">
-        <p>Agendado</p>
-        <p>R$ 500.00</p>
-      </div>
-      <div class="text-sm flex justify-between">
-        <p>Lançado</p>
-        <p>R$ 1500.00</p>
+      <div
+        class="text-sm flex justify-between"
+        *ngFor="let status of account?.withdrawalStatus">
+        <p>{{ status }}</p>
+        <p>
+          {{
+            account?.totalWithdrawalsBy(status)
+              | currency: account?.currencyCode
+          }}
+        </p>
       </div>
     </div>
     <div class="pr-4 justify-between w-full">
@@ -44,15 +41,15 @@
       </div>
       <div class="text-sm flex justify-between">
         <p>Balanço</p>
-        <p>R$ 1500.00</p>
+        <p>{{ account?.gap | currency: account?.currencyCode }}</p>
       </div>
       <div class="text-sm flex justify-between">
         <p>Atual</p>
-        <p>R$ 1000.00</p>
+        <p>{{ account?.currentBalance | currency: account?.currencyCode }}</p>
       </div>
       <div class="text-sm flex justify-between">
         <p>Previsto</p>
-        <p>R$ 500.00</p>
+        <p>{{ account?.expectedBalance | currency: account?.currencyCode }}</p>
       </div>
     </div>
   </div>

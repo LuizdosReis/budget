@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import Account from '../../models/accounts';
 
 @Component({
   selector: 'app-account-card',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-card.component.scss'],
 })
 export class AccountCardComponent {
-  constructor() {}
+  @Input() account?: Account;
 }
