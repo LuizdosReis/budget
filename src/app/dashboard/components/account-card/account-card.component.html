@@ -1,8 +1,8 @@
 <div
-  class="px-2 py-3 mt-4 rounded-md border border-slate-200 shadow-lg hover:shadow-none transition-all duration-300">
+  class="p-4 mt-4 rounded-md border border-slate-200 shadow-lg hover:shadow-none transition-all duration-300">
   <h3 class="mb-2 text-xl font-bold">{{ account?.name }}</h3>
-  <div class="flex flex-col md:flex-row w-full">
-    <div class="pr-4 justify-between w-full">
+  <div class="flex flex-col md:flex-row gap-4 w-full">
+    <div class="justify-between w-full">
       <div class="text-lg font-semibold flex justify-between">
         <p>Entradas</p>
         <p>{{ account?.totalDeposits | currency: account?.currencyCode }}</p>
@@ -18,7 +18,7 @@
         </p>
       </div>
     </div>
-    <div class="pr-4 justify-between w-full">
+    <div class="justify-between w-full">
       <div class="text-lg font-semibold flex justify-between">
         <p>Saídas</p>
         <p>{{ account?.totalWithdrawals | currency: account?.currencyCode }}</p>
@@ -35,7 +35,7 @@
         </p>
       </div>
     </div>
-    <div class="pr-4 justify-between w-full">
+    <div class="justify-between w-full">
       <div class="text-lg font-semibold">
         <p>Saldo</p>
       </div>
