@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "mock-api": "json-server --watch ./mock/db.json"
+    "mock-api": "json-server --watch  --routes ./mock/routes.json ./mock/db.json"
   },
   "private": true,
   "dependencies": {
