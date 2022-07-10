@@ -12,7 +12,7 @@ export default class Account {
   withdrawals: TransactionAmount[];
   currentBalance: number;
   expectedBalance: number;
-  gap: number;
+  monthlyBalance: number;
 
   constructor({
     deposits,
@@ -21,7 +21,7 @@ export default class Account {
     currencyCode,
     currentBalance,
     expectedBalance,
-    gap,
+    monthlyBalance,
   }: {
     deposits: TransactionAmount[];
     withdrawals: TransactionAmount[];
@@ -29,7 +29,7 @@ export default class Account {
     currencyCode: string;
     currentBalance: number;
     expectedBalance: number;
-    gap: number;
+    monthlyBalance: number;
   }) {
     this.deposits = deposits;
     this.withdrawals = withdrawals;
@@ -37,7 +37,7 @@ export default class Account {
     this.currencyCode = currencyCode;
     this.currentBalance = currentBalance;
     this.expectedBalance = expectedBalance;
-    this.gap = gap;
+    this.monthlyBalance = monthlyBalance;
   }
 
   get totalDeposits(): number {

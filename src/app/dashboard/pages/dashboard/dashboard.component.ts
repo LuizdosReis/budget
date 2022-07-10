@@ -13,7 +13,7 @@ export class DashboardComponent {
       currencyCode: 'BRL',
       currentBalance: 5,
       expectedBalance: 20,
-      gap: 2,
+      monthlyBalance: 2,
       deposits: [
         {
           name: 'Income',

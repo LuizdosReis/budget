@@ -5,7 +5,7 @@
       "currencyCode": "BRL",
       "currentBalance": 5,
       "expectedBalance": 20,
-      "ga": 2,
+      "monthlyBalance": 2,
       "deposits": [
         {
           "name": "Income",
