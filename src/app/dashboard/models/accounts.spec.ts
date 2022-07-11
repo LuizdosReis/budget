@@ -1,6 +1,6 @@
 import Account from './accounts';
 
-fdescribe('Accounts', () => {
+describe('Accounts', () => {
   let account: Account;
 
   beforeEach(() => {
