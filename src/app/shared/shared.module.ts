@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PageComponent } from './components/page/page.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { MenuComponent } from './components/menu/menu.component';
     PageComponent,
     MenuComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [CommonModule, RouterModule, PageComponent],
 })
 export class SharedModule {}
