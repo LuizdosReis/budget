@@ -1,6 +1,5 @@
 <app-page>
   <app-month-swiper></app-month-swiper>
-  <app-account-card
-    [account]="account"
-    *ngFor="let account of accounts"></app-account-card>
+  <app-account-card *ngFor="let account of accounts" [account]="account">
+  </app-account-card>
 </app-page>
