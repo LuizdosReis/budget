@@ -73,4 +73,13 @@ describe('DashboardComponent', () => {
       fixture.debugElement.queryAll(By.css('app-account-card')).length
     ).toBe(0);
   });
+
+  it('should have there are no accounts paragraph when get accounts return empty ', () => {
+    dashboardApiServiceSpy.getAccounts.and.returnValue(of([]));
+    fixture.detectChanges();
+
+    expect(
+      fixture.debugElement.query(By.css('[data-testid="there-is-no-accounts"]'))
+    ).toBeTruthy();
+  });
 });

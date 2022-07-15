@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { debounceTime } from 'rxjs';
 import Account from '../../models/accounts';
 import { DashboardApiService } from '../../services/dashboard-api.service';
 
@@ -9,12 +10,14 @@ import { DashboardApiService } from '../../services/dashboard-api.service';
 })
 export class DashboardComponent implements OnInit {
   accounts?: Account[];
+  accountsLoaded = false;
 
   constructor(private dashboardApi: DashboardApiService) {}
 
   ngOnInit(): void {
-    this.dashboardApi
-      .getAccounts()
-      .subscribe(accounts => (this.accounts = accounts));
+    this.dashboardApi.getAccounts().subscribe(accounts => {
+      this.accounts = accounts;
+      this.accountsLoaded = true;
+    });
   }
 }

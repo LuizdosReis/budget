@@ -2,4 +2,10 @@
   <app-month-swiper></app-month-swiper>
   <app-account-card *ngFor="let account of accounts" [account]="account">
   </app-account-card>
+  <p
+    *ngIf="!accounts?.length && accountsLoaded"
+    data-testid="there-is-no-accounts"
+    class="text-center p-4 font-bold">
+    Não há contas cadastradas
+  </p>
 </app-page>
