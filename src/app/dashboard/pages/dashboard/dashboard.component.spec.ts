@@ -82,4 +82,13 @@ describe('DashboardComponent', () => {
       fixture.debugElement.query(By.css('[data-testid="there-is-no-accounts"]'))
     ).toBeTruthy();
   });
+
+  it('should not have there are no accounts paragraph when get accounts return accounts ', () => {
+    dashboardApiServiceSpy.getAccounts.and.returnValue(of(accounts));
+    fixture.detectChanges();
+
+    expect(
+      fixture.debugElement.query(By.css('[data-testid="there-is-no-accounts"]'))
+    ).toBeFalsy();
+  });
 });
