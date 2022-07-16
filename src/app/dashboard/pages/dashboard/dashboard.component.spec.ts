@@ -31,7 +31,7 @@ describe('DashboardComponent', () => {
     }),
   ];
 
-  const dashboardApiServiceSpy = jasmine.createSpyObj('DashboardApiService', [
+  const dashboardApiService = jasmine.createSpyObj('DashboardApiService', [
     'getAccounts',
   ]);
 
@@ -39,7 +39,7 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
       providers: [
-        { provide: DashboardApiService, useValue: dashboardApiServiceSpy },
+        { provide: DashboardApiService, useValue: dashboardApiService },
       ],
     }).compileComponents();
   });
@@ -49,15 +49,20 @@ describe('DashboardComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('accounts in component should be equal the accounts return by dashboardApiService', () => {
-    dashboardApiServiceSpy.getAccounts.and.returnValue(of(accounts));
+  it('should have accounts from getAccounts after component initialized', () => {
+    const getAccountsSpy = dashboardApiService.getAccounts.and.returnValue(
+      of(accounts)
+    );
     fixture.detectChanges();
 
     expect(component.accounts).toBe(accounts);
+    expect(getAccountsSpy.calls.any())
+      .withContext('getAccounts called')
+      .toBe(true);
   });
 
-  it('accounts and accounts card should have the same length', () => {
-    dashboardApiServiceSpy.getAccounts.and.returnValue(of(accounts));
+  it('should have account cards when getAccounts returns accounts', () => {
+    dashboardApiService.getAccounts.and.returnValue(of(accounts));
     fixture.detectChanges();
 
     expect(
@@ -65,8 +70,8 @@ describe('DashboardComponent', () => {
     ).toBe(accounts.length);
   });
 
-  it('should not have accounts cards when dashboardApiService getAccounts does not return accounts', () => {
-    dashboardApiServiceSpy.getAccounts.and.returnValue(of([]));
+  it('should not have accounts cards when getAccounts does not return accounts', () => {
+    dashboardApiService.getAccounts.and.returnValue(of([]));
     fixture.detectChanges();
 
     expect(
@@ -75,7 +80,7 @@ describe('DashboardComponent', () => {
   });
 
   it('should have there are no accounts paragraph when get accounts return empty ', () => {
-    dashboardApiServiceSpy.getAccounts.and.returnValue(of([]));
+    dashboardApiService.getAccounts.and.returnValue(of([]));
     fixture.detectChanges();
 
     expect(
@@ -84,7 +89,7 @@ describe('DashboardComponent', () => {
   });
 
   it('should not have there are no accounts paragraph when get accounts return accounts ', () => {
-    dashboardApiServiceSpy.getAccounts.and.returnValue(of(accounts));
+    dashboardApiService.getAccounts.and.returnValue(of(accounts));
     fixture.detectChanges();
 
     expect(
