@@ -7,5 +7,5 @@ import Account from '../../models/accounts';
   styleUrls: ['./account-card.component.scss'],
 })
 export class AccountCardComponent {
-  @Input() account?: Account;
+  @Input() account!: Account;
 }
