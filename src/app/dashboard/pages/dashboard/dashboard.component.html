@@ -1,11 +1,19 @@
 <app-page>
   <app-month-swiper></app-month-swiper>
-  <app-account-card *ngFor="let account of accounts" [account]="account">
-  </app-account-card>
-  <p
-    *ngIf="!accounts?.length && accountsLoaded"
-    data-testid="there-is-no-accounts"
-    class="text-center p-4 font-bold">
-    Não há contas cadastradas
-  </p>
+
+  <ng-container *ngIf="!accountsLoaded; else accountCardBlock">
+    <app-account-card-skeleton *ngFor="let item of [1, 2, 3]">
+    </app-account-card-skeleton>
+  </ng-container>
+
+  <ng-template #accountCardBlock>
+    <app-account-card *ngFor="let account of accounts" [account]="account">
+    </app-account-card>
+    <p
+      *ngIf="!accounts?.length"
+      data-testid="there-is-no-accounts"
+      class="text-center p-4 font-bold">
+      Não há contas cadastradas
+    </p>
+  </ng-template>
 </app-page>

@@ -6,12 +6,14 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SwiperModule } from 'swiper/angular';
 import { MonthSwiperComponent } from './components/month-swiper/month-swiper.component';
 import { AccountCardComponent } from './components/account-card/account-card.component';
+import { AccountCardSkeletonComponent } from './components/account-card-skeleton/account-card-skeleton.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MonthSwiperComponent,
     AccountCardComponent,
+    AccountCardSkeletonComponent,
   ],
   imports: [DashboardRoutingModule, SharedModule, SwiperModule],
 })

@@ -1,6 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+import { delay, map, of, timer } from 'rxjs';
 import Account from '../../models/accounts';
 import { DashboardApiService } from '../../services/dashboard-api.service';
 
@@ -96,4 +101,23 @@ describe('DashboardComponent', () => {
       fixture.debugElement.query(By.css('[data-testid="there-is-no-accounts"]'))
     ).toBeFalsy();
   });
+
+  it('should have account card skeleton when starts', fakeAsync(() => {
+    dashboardApiService.getAccounts.and.returnValue(
+      of(accounts).pipe(delay(1))
+    );
+
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('app-account-card-skeleton')))
+      .withContext('start with skeleton')
+      .toBeTruthy();
+
+    tick(1);
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('app-account-card-skeleton')))
+      .withContext('without skeleton after get accounts returns')
+      .toBeFalsy();
+  }));
 });
