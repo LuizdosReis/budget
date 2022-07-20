@@ -1,6 +1,8 @@
 {
   "accounts": [
     {
+      "year": 2022,
+      "month": 7,
       "name": "Nubank",
       "currencyCode": "BRL",
       "currentBalance": 5,

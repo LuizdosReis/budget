@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { debounceTime } from 'rxjs';
 import Account from '../../models/accounts';
+import { MonthYear } from '../../models/monthYear';
 import { DashboardApiService } from '../../services/dashboard-api.service';
 
 @Component({
@@ -11,11 +11,18 @@ import { DashboardApiService } from '../../services/dashboard-api.service';
 export class DashboardComponent implements OnInit {
   accounts?: Account[];
   accountsLoaded = false;
+  monthYear?: MonthYear;
 
   constructor(private dashboardApi: DashboardApiService) {}
 
   ngOnInit(): void {
-    this.dashboardApi.getAccounts().subscribe(accounts => {
+    const date = new Date();
+    this.monthYear = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+    };
+
+    this.dashboardApi.getAccounts(this.monthYear).subscribe(accounts => {
       this.accounts = accounts;
       this.accountsLoaded = true;
     });
