@@ -1,5 +1,8 @@
 <app-page>
-  <app-month-swiper></app-month-swiper>
+  <app-month-swiper
+    [currentMonthYear]="currentMonthYear"
+    [monthsYears]="monthsYears"
+    (selectMonthYear)="selectMonthYear($event)"></app-month-swiper>
 
   <ng-container *ngIf="!accountsLoaded; else accountCardBlock">
     <app-account-card-skeleton *ngFor="let item of [1, 2, 3]">

@@ -11,20 +11,39 @@ import { DashboardApiService } from '../../services/dashboard-api.service';
 export class DashboardComponent implements OnInit {
   accounts?: Account[];
   accountsLoaded = false;
-  monthYear?: MonthYear;
+  monthsYears: MonthYear[] = [];
+  currentMonthYear!: MonthYear;
 
   constructor(private dashboardApi: DashboardApiService) {}
 
   ngOnInit(): void {
     const date = new Date();
-    this.monthYear = {
+    this.currentMonthYear = {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
     };
+    this.loadMonthsYears();
+    this.loadAccounts(this.currentMonthYear);
+  }
 
-    this.dashboardApi.getAccounts(this.monthYear).subscribe(accounts => {
+  loadMonthsYears(): void {
+    this.dashboardApi
+      .getMonthYears()
+      .subscribe(
+        (monthsYears: MonthYear[]) => (this.monthsYears = monthsYears)
+      );
+  }
+
+  loadAccounts(monthYear: MonthYear): void {
+    this.accountsLoaded = false;
+    this.dashboardApi.getAccounts(monthYear).subscribe(accounts => {
       this.accounts = accounts;
       this.accountsLoaded = true;
     });
+  }
+
+  selectMonthYear(monthYear: MonthYear): void {
+    this.currentMonthYear = monthYear;
+    this.loadAccounts(this.currentMonthYear);
   }
 }

@@ -59,5 +59,35 @@
         }
       ]
     }
+  ],
+  "months-years": [
+    {
+      "year": 2022,
+      "month": 7
+    },
+    {
+      "year": 2022,
+      "month": 8
+    },
+    {
+      "year": 2022,
+      "month": 9
+    },
+    {
+      "year": 2022,
+      "month": 10
+    },
+    {
+      "year": 2022,
+      "month": 11
+    },
+    {
+      "year": 2022,
+      "month": 12
+    },
+    {
+      "year": 2023,
+      "month": 1
+    }
   ]
 }

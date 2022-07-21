@@ -1,4 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { MonthYear } from '../../models/monthYear';
 
 @Component({
   selector: 'app-month-swiper',
@@ -7,7 +14,23 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class MonthSwiperComponent {
-  slides = Array.from({ length: 11 }).map((_, index) => `Slide ${index + 1}`);
+  @Input() currentMonthYear!: MonthYear;
+  @Input() monthsYears!: MonthYear[];
+
+  @Output() selectMonthYear = new EventEmitter<MonthYear>();
 
   constructor() {}
+
+  get currentMonthYearIndex(): number {
+    return this.monthsYears.findIndex((monthYear: MonthYear) =>
+      this.isCurrentMonthYear(monthYear)
+    );
+  }
+
+  isCurrentMonthYear(monthYear: MonthYear): boolean {
+    return (
+      monthYear.month === this.currentMonthYear.month &&
+      monthYear.year === this.currentMonthYear.year
+    );
+  }
 }

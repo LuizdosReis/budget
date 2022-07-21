@@ -8,7 +8,7 @@ import { MonthYear } from '../models/monthYear';
   providedIn: 'root',
 })
 export class DashboardApiService {
-  readonly URL = '/mock/accounts';
+  readonly URL = '/mock';
 
   constructor(private http: HttpClient) {}
 
@@ -18,11 +18,15 @@ export class DashboardApiService {
       .set('month', monthYear.month);
 
     return this.http
-      .get<Account[]>(this.URL, { params })
+      .get<Account[]>(`${this.URL}/accounts`, { params })
       .pipe(
         map((accounts: Account[]) =>
           accounts.map(account => new Account(account))
         )
       );
+  }
+
+  getMonthYears(): Observable<MonthYear[]> {
+    return this.http.get<MonthYear[]>(`${this.URL}/months-years`);
   }
 }
