@@ -11,6 +11,7 @@ import { DashboardApiService } from '../../services/dashboard-api.service';
 export class DashboardComponent implements OnInit {
   accounts?: Account[];
   accountsLoaded = false;
+  monthsYearsLoaded = false;
   monthsYears: MonthYear[] = [];
   currentMonthYear!: MonthYear;
 
@@ -27,11 +28,10 @@ export class DashboardComponent implements OnInit {
   }
 
   loadMonthsYears(): void {
-    this.dashboardApi
-      .getMonthYears()
-      .subscribe(
-        (monthsYears: MonthYear[]) => (this.monthsYears = monthsYears)
-      );
+    this.dashboardApi.getMonthYears().subscribe((monthsYears: MonthYear[]) => {
+      this.monthsYears = monthsYears;
+      this.monthsYearsLoaded = true;
+    });
   }
 
   loadAccounts(monthYear: MonthYear): void {

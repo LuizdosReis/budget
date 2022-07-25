@@ -1,5 +1,6 @@
 <app-page>
   <app-month-swiper
+    *ngIf="monthsYearsLoaded && monthsYears.length"
     [currentMonthYear]="currentMonthYear"
     [monthsYears]="monthsYears"
     (selectMonthYear)="selectMonthYear($event)"></app-month-swiper>

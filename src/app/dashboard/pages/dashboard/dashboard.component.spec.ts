@@ -5,8 +5,9 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { delay, map, of, timer } from 'rxjs';
+import { delay, of } from 'rxjs';
 import Account from '../../models/accounts';
+import { MonthYear } from '../../models/monthYear';
 import { DashboardApiService } from '../../services/dashboard-api.service';
 
 import { DashboardComponent } from './dashboard.component';
@@ -14,6 +15,8 @@ import { DashboardComponent } from './dashboard.component';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let getMonthYearsSpy: any;
+  let getAccountsSpy: any;
 
   const accounts: Account[] = [
     new Account({
@@ -36,8 +39,16 @@ describe('DashboardComponent', () => {
     }),
   ];
 
+  const monthsYears: MonthYear[] = [
+    {
+      year: 2022,
+      month: 7,
+    },
+  ];
+
   const dashboardApiService = jasmine.createSpyObj('DashboardApiService', [
     'getAccounts',
+    'getMonthYears',
   ]);
 
   beforeEach(async () => {
@@ -54,10 +65,17 @@ describe('DashboardComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should have accounts from getAccounts after component initialized', () => {
-    const getAccountsSpy = dashboardApiService.getAccounts.and.returnValue(
+  beforeEach(() => {
+    getMonthYearsSpy = dashboardApiService.getMonthYears.and.returnValue(
+      of(monthsYears)
+    );
+
+    getAccountsSpy = dashboardApiService.getAccounts.and.returnValue(
       of(accounts)
     );
+  });
+
+  it('should have accounts from getAccounts after component initialized', () => {
     fixture.detectChanges();
 
     expect(component.accounts).toBe(accounts);
@@ -66,13 +84,27 @@ describe('DashboardComponent', () => {
       .toBe(true);
   });
 
+  it('should have monthsYears from getMonthYears after component initialized', () => {
+    fixture.detectChanges();
+
+    expect(component.monthsYears).toBe(monthsYears);
+    expect(getMonthYearsSpy.calls.any())
+      .withContext('getMonthYears called')
+      .toBe(true);
+  });
+
   it('should have account cards when getAccounts returns accounts', () => {
-    dashboardApiService.getAccounts.and.returnValue(of(accounts));
     fixture.detectChanges();
 
     expect(
       fixture.debugElement.queryAll(By.css('app-account-card')).length
     ).toBe(accounts.length);
+  });
+
+  it('should have month swipper when getMonthYears returns monthsYears', () => {
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('app-month-swiper'))).toBeTruthy();
   });
 
   it('should not have accounts cards when getAccounts does not return accounts', () => {
@@ -82,6 +114,13 @@ describe('DashboardComponent', () => {
     expect(
       fixture.debugElement.queryAll(By.css('app-account-card')).length
     ).toBe(0);
+  });
+
+  it('should not have month swipper when getMonthYears does not return monthsYears', () => {
+    dashboardApiService.getMonthYears.and.returnValue(of([]));
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('app-month-swiper'))).toBeFalsy();
   });
 
   it('should have there are no accounts paragraph when get accounts return empty ', () => {
@@ -94,7 +133,6 @@ describe('DashboardComponent', () => {
   });
 
   it('should not have there are no accounts paragraph when get accounts return accounts ', () => {
-    dashboardApiService.getAccounts.and.returnValue(of(accounts));
     fixture.detectChanges();
 
     expect(
