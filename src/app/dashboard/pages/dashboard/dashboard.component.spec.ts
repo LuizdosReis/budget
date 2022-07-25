@@ -158,4 +158,23 @@ describe('DashboardComponent', () => {
       .withContext('without skeleton after get accounts returns')
       .toBeFalsy();
   }));
+
+  it('should have month swiper skeleton when starts', fakeAsync(() => {
+    dashboardApiService.getMonthYears.and.returnValue(
+      of(monthsYears).pipe(delay(1))
+    );
+
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('app-month-swiper-skeleton')))
+      .withContext('start with skeleton')
+      .toBeTruthy();
+
+    tick(1);
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('app-month-swiper-skeleton')))
+      .withContext('without skeleton after get month years returns')
+      .toBeFalsy();
+  }));
 });
