@@ -15,7 +15,6 @@ import { DashboardComponent } from './dashboard.component';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let getMonthYearsSpy: any;
   let getAccountsSpy: any;
 
   const accounts: Account[] = [
@@ -66,9 +65,7 @@ describe('DashboardComponent', () => {
   });
 
   beforeEach(() => {
-    getMonthYearsSpy = dashboardApiService.getMonthYears.and.returnValue(
-      of(monthsYears)
-    );
+    dashboardApiService.getMonthYears.and.returnValue(of(monthsYears));
 
     getAccountsSpy = dashboardApiService.getAccounts.and.returnValue(
       of(accounts)
@@ -79,18 +76,19 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
 
     expect(component.accounts).toBe(accounts);
-    expect(getAccountsSpy.calls.any())
-      .withContext('getAccounts called')
-      .toBe(true);
+  });
+
+  it('should call getAccounts with currentMonthYear after component initialized', () => {
+    fixture.detectChanges();
+
+    expect(component.accounts).toBe(accounts);
+    expect(getAccountsSpy).toHaveBeenCalledWith(component.currentMonthYear);
   });
 
   it('should have monthsYears from getMonthYears after component initialized', () => {
     fixture.detectChanges();
 
     expect(component.monthsYears).toBe(monthsYears);
-    expect(getMonthYearsSpy.calls.any())
-      .withContext('getMonthYears called')
-      .toBe(true);
   });
 
   it('should have account cards when getAccounts returns accounts', () => {
@@ -177,4 +175,42 @@ describe('DashboardComponent', () => {
       .withContext('without skeleton after get month years returns')
       .toBeFalsy();
   }));
+
+  it('should set accountsLoaded to false when month swipper raises selectMonthYear event', fakeAsync(() => {
+    dashboardApiService.getAccounts.and.returnValue(
+      of(accounts).pipe(delay(1))
+    );
+
+    fixture.detectChanges();
+
+    const monthYear: MonthYear = {
+      year: 2022,
+      month: 9,
+    };
+
+    fixture.debugElement
+      .query(By.css('app-month-swiper'))
+      .triggerEventHandler('selectMonthYear', monthYear);
+
+    expect(component.accountsLoaded).toBeFalse();
+
+    tick(1);
+
+    expect(component.accountsLoaded).toBeTrue();
+  }));
+
+  it('should call getAccounts when month swipper raises selectMonthYear event', () => {
+    fixture.detectChanges();
+
+    const monthYear: MonthYear = {
+      year: 2022,
+      month: 9,
+    };
+
+    fixture.debugElement
+      .query(By.css('app-month-swiper'))
+      .triggerEventHandler('selectMonthYear', monthYear);
+
+    expect(getAccountsSpy).toHaveBeenCalledWith(monthYear);
+  });
 });

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { delay } from 'rxjs';
 import Account from '../../models/accounts';
 import { MonthYear } from '../../models/monthYear';
 import { DashboardApiService } from '../../services/dashboard-api.service';
@@ -19,13 +18,15 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardApi: DashboardApiService) {}
 
   ngOnInit(): void {
+    this.loadMonthsYears();
+
     const date = new Date();
     this.currentMonthYear = {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
     };
-    this.loadMonthsYears();
-    this.loadAccounts(this.currentMonthYear);
+
+    this.loadAccounts();
   }
 
   loadMonthsYears(): void {
@@ -35,9 +36,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  loadAccounts(monthYear: MonthYear): void {
+  loadAccounts(): void {
     this.accountsLoaded = false;
-    this.dashboardApi.getAccounts(monthYear).subscribe(accounts => {
+    this.dashboardApi.getAccounts(this.currentMonthYear).subscribe(accounts => {
       this.accounts = accounts;
       this.accountsLoaded = true;
     });
@@ -45,6 +46,6 @@ export class DashboardComponent implements OnInit {
 
   selectMonthYear(monthYear: MonthYear): void {
     this.currentMonthYear = monthYear;
-    this.loadAccounts(this.currentMonthYear);
+    this.loadAccounts();
   }
 }
