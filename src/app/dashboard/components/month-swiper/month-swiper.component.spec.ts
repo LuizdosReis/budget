@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { first } from 'rxjs';
+import { SwiperModule } from 'swiper/angular';
 import { MonthYear } from '../../models/monthYear';
 
 import { MonthSwiperComponent } from './month-swiper.component';
@@ -10,6 +13,7 @@ describe('MonthSwiperComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MonthSwiperComponent],
+      imports: [SwiperModule],
     }).compileComponents();
   });
 
@@ -91,5 +95,18 @@ describe('MonthSwiperComponent', () => {
     };
 
     expect(component.currentMonthYearIndex).toBe(-1);
+  });
+
+  it('raises selectMonthYear event when clicked', () => {
+    component.selectMonthYear
+      .pipe(first())
+      .subscribe((monthYear: MonthYear) => {
+        expect(monthYear.year).toBe(2022);
+        expect(monthYear.month).toBe(7);
+      });
+
+    fixture.debugElement
+      .query(By.css('button'))
+      .triggerEventHandler('click', null);
   });
 });
