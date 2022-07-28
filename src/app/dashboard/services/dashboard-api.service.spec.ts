@@ -94,7 +94,7 @@ describe('DashboardApiService', () => {
       expect(accounts.length).toBe(returnAccounts.length);
     });
 
-    const expectedUrl = `${service.URL}?year=${monthYear.year}&month=${monthYear.month}`;
+    const expectedUrl = `${service.URL}/accounts?year=${monthYear.year}&month=${monthYear.month}`;
 
     httpController.expectOne({
       method: 'GET',
