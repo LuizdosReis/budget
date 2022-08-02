@@ -84,7 +84,7 @@ describe('DashboardApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call getAccounts with year and month and return an array of accounts', () => {
+  it('should call getAccounts with year and month and return an array of accounts', done => {
     const monthYear: MonthYear = {
       year: 2022,
       month: 7,
@@ -92,13 +92,16 @@ describe('DashboardApiService', () => {
 
     service.getAccounts(monthYear).subscribe((accounts: Account[]) => {
       expect(accounts.length).toBe(returnAccounts.length);
+      done();
     });
 
     const expectedUrl = `${service.URL}/accounts?year=${monthYear.year}&month=${monthYear.month}`;
 
-    httpController.expectOne({
+    const req = httpController.expectOne({
       method: 'GET',
       url: expectedUrl,
     });
+
+    req.flush(returnAccounts);
   });
 });
