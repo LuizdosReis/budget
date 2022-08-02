@@ -26,7 +26,7 @@ export class DashboardApiService {
       );
   }
 
-  getMonthYears(): Observable<MonthYear[]> {
+  getMonthsYears(): Observable<MonthYear[]> {
     return this.http.get<MonthYear[]>(`${this.URL}/months-years`);
   }
 }

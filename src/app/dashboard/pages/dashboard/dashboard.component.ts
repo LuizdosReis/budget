@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadMonthsYears(): void {
-    this.dashboardApi.getMonthYears().subscribe((monthsYears: MonthYear[]) => {
+    this.dashboardApi.getMonthsYears().subscribe((monthsYears: MonthYear[]) => {
       this.monthsYears = monthsYears;
       this.monthsYearsLoaded = true;
     });

@@ -47,7 +47,7 @@ describe('DashboardComponent', () => {
 
   const dashboardApiService = jasmine.createSpyObj('DashboardApiService', [
     'getAccounts',
-    'getMonthYears',
+    'getMonthsYears',
   ]);
 
   beforeEach(async () => {
@@ -65,7 +65,7 @@ describe('DashboardComponent', () => {
   });
 
   beforeEach(() => {
-    dashboardApiService.getMonthYears.and.returnValue(of(monthsYears));
+    dashboardApiService.getMonthsYears.and.returnValue(of(monthsYears));
 
     getAccountsSpy = dashboardApiService.getAccounts.and.returnValue(
       of(accounts)
@@ -115,7 +115,7 @@ describe('DashboardComponent', () => {
   });
 
   it('should not have month swipper when getMonthYears does not return monthsYears', () => {
-    dashboardApiService.getMonthYears.and.returnValue(of([]));
+    dashboardApiService.getMonthsYears.and.returnValue(of([]));
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('app-month-swiper'))).toBeFalsy();
@@ -158,7 +158,7 @@ describe('DashboardComponent', () => {
   }));
 
   it('should have month swiper skeleton when starts', fakeAsync(() => {
-    dashboardApiService.getMonthYears.and.returnValue(
+    dashboardApiService.getMonthsYears.and.returnValue(
       of(monthsYears).pipe(delay(1))
     );
 
