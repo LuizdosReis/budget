@@ -12,7 +12,7 @@ describe('DashboardApiService', () => {
   let service: DashboardApiService;
   let httpController: HttpTestingController;
 
-  const returnAccounts = [
+  const fakeAccounts = [
     {
       year: 2022,
       month: 7,
@@ -74,6 +74,13 @@ describe('DashboardApiService', () => {
     },
   ];
 
+  const fakeMonthsYears: MonthYear[] = [
+    {
+      year: 2022,
+      month: 7,
+    },
+  ];
+
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
     service = TestBed.inject(DashboardApiService);
@@ -91,7 +98,7 @@ describe('DashboardApiService', () => {
     };
 
     service.getAccounts(monthYear).subscribe((accounts: Account[]) => {
-      expect(accounts.length).toBe(returnAccounts.length);
+      expect(accounts.length).toBe(fakeAccounts.length);
       done();
     });
 
@@ -102,6 +109,22 @@ describe('DashboardApiService', () => {
       url: expectedUrl,
     });
 
-    req.flush(returnAccounts);
+    req.flush(fakeAccounts);
+  });
+
+  it('should call getMonthsYears and return an array of monthsYears', done => {
+    service.getMonthsYears().subscribe((monthsYears: MonthYear[]) => {
+      expect(monthsYears.length).toBe(fakeMonthsYears.length);
+      done();
+    });
+
+    const expectedUrl = `${service.URL}/months-years`;
+
+    const req = httpController.expectOne({
+      method: 'GET',
+      url: expectedUrl,
+    });
+
+    req.flush(fakeMonthsYears);
   });
 });
