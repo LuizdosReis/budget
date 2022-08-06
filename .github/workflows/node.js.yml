@@ -29,3 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test:ci
+    - name: Publish Test Report
+      if: ${{ always() }}
+      uses: scacap/action-surefire-report@v1
+      with:
+        report_paths: 'TESTS-Chrome_Headless_*.xml'
