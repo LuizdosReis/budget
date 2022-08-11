@@ -3,7 +3,6 @@
     "target": "https://699c7d4b-2a60-4719-a0eb-eb2e8306c05d.mock.pstmn.io",
     "secure": true,
     "logLevel": "debug",
-    "changeOrigin": true,
-    "pathRewrite": {"^/mock" : ""}
+    "changeOrigin": true
   }
 }
