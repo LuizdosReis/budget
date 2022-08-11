@@ -1,0 +1,12 @@
+**/node_modules
+**/.git
+**/.gitignore
+**/.github
+**/dist
+**/.vscode
+**/e2e
+README.md
+docker-compose.yml
+dockerfile
+dockerfile.production
+proxy.conf.json
