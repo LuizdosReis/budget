@@ -43,7 +43,7 @@ jobs:
   build_push_container_image:
     environment: docker
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     
     needs: [test]
     
@@ -62,7 +62,7 @@ jobs:
           ${{ secrets.DOCKER_USERNAME }}/budget:${{ github.sha }}
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs: [build_push_container_image]
     
     steps:
