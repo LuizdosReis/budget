@@ -34,17 +34,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  publish_test_report:
-    runs-on: ubuntu-latest
-    needs: [test]
-
-    steps:
-      - name: Publish Test Report
-        if: ${{ always() }}
-        uses: scacap/action-surefire-report@v1
-        with:
-          report_paths: 'TESTS-Chrome_Headless_*.xml'
-
   build_push_container_image:
     environment: docker
     runs-on: ubuntu-latest
