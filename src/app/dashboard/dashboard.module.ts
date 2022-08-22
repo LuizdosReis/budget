@@ -8,6 +8,7 @@ import { MonthSwiperComponent } from './components/month-swiper/month-swiper.com
 import { AccountCardComponent } from './components/account-card/account-card.component';
 import { AccountCardSkeletonComponent } from './components/account-card-skeleton/account-card-skeleton.component';
 import { MonthSwiperSkeletonComponent } from './components/month-swiper-skeleton/month-swiper-skeleton.component';
+import { AccountModalComponent } from './components/account-modal/account-modal.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MonthSwiperSkeletonComponent } from './components/month-swiper-skeleton
     AccountCardComponent,
     AccountCardSkeletonComponent,
     MonthSwiperSkeletonComponent,
+    AccountModalComponent,
   ],
   imports: [DashboardRoutingModule, SharedModule, SwiperModule],
 })

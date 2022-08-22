@@ -1,0 +1,66 @@
+<h3 class="mb-2 text-xl font-bold">{{ data.account.name }}</h3>
+<div class="flex flex-col md:flex-row gap-4 w-full">
+  <div class="justify-between w-full">
+    <div class="text-lg font-semibold flex justify-between">
+      <p>Entradas</p>
+      <p>
+        {{ data.account.totalDeposits | currency: data.account.currencyCode }}
+      </p>
+    </div>
+    <div
+      class="text-sm flex justify-between"
+      *ngFor="let status of data.account.depositStatus">
+      <p>{{ status }}</p>
+      <p>
+        {{
+          data.account.totalDepositsBy(status)
+            | currency: data.account.currencyCode
+        }}
+      </p>
+    </div>
+  </div>
+  <div class="justify-between w-full">
+    <div class="text-lg font-semibold flex justify-between">
+      <p>Saídas</p>
+      <p>
+        {{
+          data.account.totalWithdrawals | currency: data.account.currencyCode
+        }}
+      </p>
+    </div>
+    <div
+      class="text-sm flex justify-between"
+      *ngFor="let status of data.account.withdrawalStatus">
+      <p>{{ status }}</p>
+      <p>
+        {{
+          data.account.totalWithdrawalsBy(status)
+            | currency: data.account.currencyCode
+        }}
+      </p>
+    </div>
+  </div>
+  <div class="justify-between w-full">
+    <div class="text-lg font-semibold">
+      <p>Saldo</p>
+    </div>
+    <div class="text-sm flex justify-between">
+      <p>Mensal</p>
+      <p>
+        {{ data.account.monthlyBalance | currency: data.account.currencyCode }}
+      </p>
+    </div>
+    <div class="text-sm flex justify-between">
+      <p>Atual</p>
+      <p>
+        {{ data.account.currentBalance | currency: data.account.currencyCode }}
+      </p>
+    </div>
+    <div class="text-sm flex justify-between">
+      <p>Previsto</p>
+      <p>
+        {{ data.account.expectedBalance | currency: data.account.currencyCode }}
+      </p>
+    </div>
+  </div>
+</div>
