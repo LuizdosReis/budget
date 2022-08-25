@@ -4,7 +4,7 @@ interface Status {
   amount: number;
 }
 
-class Category {
+export class Category {
   name: string;
   status: Status[];
 
@@ -20,7 +20,7 @@ class Category {
   }
 }
 
-export default class Account {
+export class Account {
   name: string;
   currencyCode: string;
   deposits: Category[];

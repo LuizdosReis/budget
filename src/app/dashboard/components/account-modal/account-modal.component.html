@@ -1,65 +1,51 @@
-<h3 class="mb-2 text-xl font-bold">{{ data.account.name }}</h3>
+<h3 class="mb-2 text-2xl font-extrabold">{{ account?.name }}</h3>
 <div class="flex flex-col md:flex-row gap-4 w-full">
-  <div class="justify-between w-full">
-    <div class="text-lg font-semibold flex justify-between">
-      <p>Entradas</p>
+  <div
+    class="justify-between w-full"
+    *ngFor="let bankingEntry of bankingEntries">
+    <div class="text-xl font-bold flex justify-between">
+      <p>{{ bankingEntry.name }}</p>
       <p>
-        {{ data.account.totalDeposits | currency: data.account.currencyCode }}
+        {{ bankingEntry.total | currency: account?.currencyCode }}
       </p>
     </div>
-    <div
-      class="text-sm flex justify-between"
-      *ngFor="let status of data.account.depositStatus">
-      <p>{{ status }}</p>
-      <p>
-        {{
-          data.account.totalDepositsBy(status)
-            | currency: data.account.currencyCode
-        }}
-      </p>
-    </div>
-  </div>
-  <div class="justify-between w-full">
-    <div class="text-lg font-semibold flex justify-between">
-      <p>Saídas</p>
-      <p>
-        {{
-          data.account.totalWithdrawals | currency: data.account.currencyCode
-        }}
-      </p>
-    </div>
-    <div
-      class="text-sm flex justify-between"
-      *ngFor="let status of data.account.withdrawalStatus">
-      <p>{{ status }}</p>
-      <p>
-        {{
-          data.account.totalWithdrawalsBy(status)
-            | currency: data.account.currencyCode
-        }}
-      </p>
+    <div *ngFor="let category of bankingEntry.categories">
+      <div class="text-lg font-semibold flex justify-between">
+        <p>{{ category.name }}</p>
+        <p>
+          {{ category.amount | currency: account?.currencyCode }}
+        </p>
+      </div>
+      <div
+        class="text-sm flex justify-between"
+        *ngFor="let status of category.status">
+        <p>{{ status.name }}</p>
+        <p>
+          {{ status.amount | currency: account?.currencyCode }}
+        </p>
+      </div>
     </div>
   </div>
   <div class="justify-between w-full">
-    <div class="text-lg font-semibold">
+    <div class="text-xl font-bold">
       <p>Saldo</p>
     </div>
     <div class="text-sm flex justify-between">
       <p>Mensal</p>
       <p>
-        {{ data.account.monthlyBalance | currency: data.account.currencyCode }}
+        {{ account?.monthlyBalance | currency: account?.currencyCode }}
       </p>
     </div>
     <div class="text-sm flex justify-between">
       <p>Atual</p>
       <p>
-        {{ data.account.currentBalance | currency: data.account.currencyCode }}
+        {{ account?.currentBalance | currency: account?.currencyCode }}
       </p>
     </div>
     <div class="text-sm flex justify-between">
       <p>Previsto</p>
       <p>
-        {{ data.account.expectedBalance | currency: data.account.currencyCode }}
+        {{ account?.expectedBalance | currency: account?.currencyCode }}
       </p>
     </div>
   </div>

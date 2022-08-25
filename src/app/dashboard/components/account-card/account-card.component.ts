@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import Account from '../../models/accounts';
+import { Account } from '../../models/accounts';
 import { AccountModalComponent } from '../account-modal/account-modal.component';
 
 @Component({
