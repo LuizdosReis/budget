@@ -19,15 +19,20 @@ import {
     MenuComponent,
   ],
   imports: [CommonModule, RouterModule, HttpClientModule, MatDialogModule],
-  exports: [CommonModule, RouterModule, PageComponent],
+  exports: [CommonModule, RouterModule, PageComponent, MatDialogModule],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {
         hasBackdrop: true,
-        maxWidth: '100vh',
-        maxHeight: '100vh',
-        panelClass: ['container'],
+        panelClass: [
+          '2xl:w-2/5',
+          'xl:w-3/5',
+          'md:w-4/5',
+          'w-screen',
+          'h-screen',
+          'md:h-fit',
+        ],
       },
     },
   ],
