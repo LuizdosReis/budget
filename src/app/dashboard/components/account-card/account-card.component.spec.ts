@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import Account from '../../models/accounts';
+import { Account } from '../../models/accounts';
 
 import { AccountCardComponent } from './account-card.component';
 

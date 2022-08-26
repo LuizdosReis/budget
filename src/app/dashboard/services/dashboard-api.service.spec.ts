@@ -6,7 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { MonthYear } from '../models/monthYear';
-import Account from '../models/accounts';
+import { Account } from '../models/accounts';
 
 describe('DashboardApiService', () => {
   let service: DashboardApiService;
