@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Account from '../../models/accounts';
+import { Account } from '../../models/accounts';
 import { MonthYear } from '../../models/monthYear';
 import { DashboardApiService } from '../../services/dashboard-api.service';
 

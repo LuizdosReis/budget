@@ -1,0 +1,69 @@
+<div>
+  <div class="mb-2 flex justify-between items-center">
+    <h3 class="text-2xl font-extrabold">
+      {{ account?.name }}
+    </h3>
+    <span mat-dialog-close class="material-symbols-rounded cursor-pointer">
+      close
+    </span>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-4 w-full">
+    <div
+      class="justify-between w-full"
+      *ngFor="let bankingEntry of bankingEntries">
+      <div class="text-xl font-bold flex justify-between">
+        <p>{{ bankingEntry.name }}</p>
+        <p>
+          {{ bankingEntry.total | currency: account?.currencyCode }}
+        </p>
+      </div>
+      <div *ngFor="let category of bankingEntry.categories">
+        <div class="text-lg font-semibold flex justify-between">
+          <p>{{ category.name }}</p>
+          <p>
+            {{ category.amount | currency: account?.currencyCode }}
+          </p>
+        </div>
+        <div
+          class="text-sm flex justify-between"
+          *ngFor="let status of category.status">
+          <p>{{ status.name }}</p>
+          <p>
+            {{ status.amount | currency: account?.currencyCode }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="justify-between w-full">
+      <div class="text-xl font-bold">
+        <p>Saldo</p>
+      </div>
+      <div class="text-sm flex justify-between">
+        <p>Mensal</p>
+        <p>
+          {{ account?.monthlyBalance | currency: account?.currencyCode }}
+        </p>
+      </div>
+      <div class="text-sm flex justify-between">
+        <p>Atual</p>
+        <p>
+          {{ account?.currentBalance | currency: account?.currencyCode }}
+        </p>
+      </div>
+      <div class="text-sm flex justify-between">
+        <p>Previsto</p>
+        <p>
+          {{ account?.expectedBalance | currency: account?.currencyCode }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2 flex justify-end">
+    <button
+      mat-dialog-close
+      class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-gray-900 flex items-center hover:bg-gray-200 hover:scale-105 transition-all duration-300 ease cursor-pointer">
+      Close
+    </button>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { delay, of } from 'rxjs';
-import Account from '../../models/accounts';
+import { Account } from '../../models/accounts';
 import { MonthYear } from '../../models/monthYear';
 import { DashboardApiService } from '../../services/dashboard-api.service';
 
