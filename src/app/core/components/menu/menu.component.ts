@@ -18,6 +18,4 @@ export class MenuComponent {
       icon: 'account_balance',
     },
   ];
-
-  constructor() {}
 }

@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
-import { PageComponent } from './components/page/page.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import {
   MatDialogModule,
@@ -12,14 +8,9 @@ import {
 } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent,
-    PageComponent,
-    MenuComponent,
-  ],
+  declarations: [],
   imports: [CommonModule, RouterModule, HttpClientModule, MatDialogModule],
-  exports: [CommonModule, RouterModule, PageComponent, MatDialogModule],
+  exports: [CommonModule, RouterModule, MatDialogModule],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
