@@ -1,31 +1,26 @@
-<app-page>
-  <app-month-swiper-skeleton
-    *ngIf="
-      !monthsYearsLoaded;
-      else monthSwiperBlock
-    "></app-month-swiper-skeleton>
+<app-month-swiper-skeleton
+  *ngIf="!monthsYearsLoaded; else monthSwiperBlock"></app-month-swiper-skeleton>
 
-  <ng-template #monthSwiperBlock>
-    <app-month-swiper
-      *ngIf="monthsYears.length"
-      [currentMonthYear]="currentMonthYear"
-      [monthsYears]="monthsYears"
-      (selectMonthYear)="selectMonthYear($event)"></app-month-swiper>
-  </ng-template>
+<ng-template #monthSwiperBlock>
+  <app-month-swiper
+    *ngIf="monthsYears.length"
+    [currentMonthYear]="currentMonthYear"
+    [monthsYears]="monthsYears"
+    (selectMonthYear)="selectMonthYear($event)"></app-month-swiper>
+</ng-template>
 
-  <ng-container *ngIf="!accountsLoaded; else accountCardBlock">
-    <app-account-card-skeleton *ngFor="let item of [1, 2, 3]">
-    </app-account-card-skeleton>
-  </ng-container>
+<ng-container *ngIf="!accountsLoaded; else accountCardBlock">
+  <app-account-card-skeleton *ngFor="let item of [1, 2, 3]">
+  </app-account-card-skeleton>
+</ng-container>
 
-  <ng-template #accountCardBlock>
-    <app-account-card *ngFor="let account of accounts" [account]="account">
-    </app-account-card>
-    <p
-      *ngIf="!accounts?.length"
-      data-testid="there-is-no-accounts"
-      class="text-center p-4 font-bold">
-      Não há contas cadastradas
-    </p>
-  </ng-template>
-</app-page>
+<ng-template #accountCardBlock>
+  <app-account-card *ngFor="let account of accounts" [account]="account">
+  </app-account-card>
+  <p
+    *ngIf="!accounts?.length"
+    data-testid="there-is-no-accounts"
+    class="text-center p-4 font-bold">
+    Não há contas cadastradas
+  </p>
+</ng-template>

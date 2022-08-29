@@ -8,8 +8,6 @@ import { Component } from '@angular/core';
 export class PageComponent {
   isSidebarOpen = false;
 
-  constructor() {}
-
   openSideBar(): void {
     this.isSidebarOpen = true;
   }
