@@ -15,7 +15,7 @@ import { DashboardComponent } from './dashboard.component';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let getAccountsSpy: any;
+  let getAccountsSpy: jasmine.Spy<jasmine.Func>;
 
   const accounts: Account[] = [
     new Account({
@@ -45,10 +45,10 @@ describe('DashboardComponent', () => {
     },
   ];
 
-  const dashboardApiService = jasmine.createSpyObj('DashboardApiService', [
-    'getAccounts',
-    'getMonthsYears',
-  ]);
+  const dashboardApiService = jasmine.createSpyObj<DashboardApiService>(
+    'DashboardApiService',
+    ['getAccounts', 'getMonthsYears']
+  );
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
