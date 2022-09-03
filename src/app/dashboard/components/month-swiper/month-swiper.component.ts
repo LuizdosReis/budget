@@ -19,8 +19,6 @@ export class MonthSwiperComponent {
 
   @Output() selectMonthYear = new EventEmitter<MonthYear>();
 
-  constructor() {}
-
   get currentMonthYearIndex(): number {
     return this.monthsYears.findIndex((monthYear: MonthYear) =>
       this.isCurrentMonthYear(monthYear)
