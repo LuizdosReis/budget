@@ -5,10 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss'],
 })
-export class PageComponent {
-  isSidebarOpen = false;
-
-  openSideBar(): void {
-    this.isSidebarOpen = true;
-  }
-}
+export class PageComponent {}
