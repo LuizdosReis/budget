@@ -1,0 +1,7 @@
+.card {
+    @apply p-4 mt-4 rounded-md border border-slate-200 shadow-lg 
+}
+
+.card-pointer {
+    @apply hover:shadow-none transition-all duration-300 cursor-pointer
+}
