@@ -39,6 +39,8 @@ $budget-theme: mat.define-light-theme((
 
 @import '~swiper/scss';
 
+@import 'styles/components/card';
+
 html,
 body {
   height: 100%;
