@@ -14,7 +14,7 @@ export class MenuComponent {
     },
     {
       link: '/accounts',
-      name: 'Accounts',
+      name: 'Contas',
       icon: 'account_balance',
     },
   ];
