@@ -7,57 +7,7 @@
 </div>
 <div
   class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4">
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p class="font-medium">Moeda</p>
-      <p>Real</p>
-    </div>
-    <div class="flex gap-2">
-      <p class="font-medium">Posição</p>
-      <p>1</p>
-    </div>
-  </div>
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p>Moeda</p>
-      <p>Real</p>
-    </div>
-  </div>
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p>Moeda</p>
-      <p>Real</p>
-    </div>
-  </div>
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p>Moeda</p>
-      <p>Real</p>
-    </div>
-  </div>
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p>Moeda</p>
-      <p>Real</p>
-    </div>
-  </div>
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p>Moeda</p>
-      <p>Real</p>
-    </div>
-  </div>
-  <div class="card card-pointer">
-    <h3 class="mb-2 text-xl font-bold">Nubank</h3>
-    <div class="flex gap-2">
-      <p>Moeda</p>
-      <p>Real</p>
-    </div>
-  </div>
+  <app-account-card
+    [account]="account"
+    *ngFor="let account of accounts"></app-account-card>
 </div>

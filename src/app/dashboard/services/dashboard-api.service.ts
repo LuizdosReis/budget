@@ -8,7 +8,7 @@ import { MonthYear } from '../models/monthYear';
   providedIn: 'root',
 })
 export class DashboardApiService {
-  readonly URL = '/mock';
+  readonly URL = '/mock/dashboard';
 
   constructor(private http: HttpClient) {}
 
