@@ -5,9 +5,19 @@
     Adicionar
   </button>
 </div>
-<div
-  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4">
-  <app-account-card
-    [account]="account"
-    *ngFor="let account of accounts"></app-account-card>
-</div>
+
+<ng-container *ngIf="!accountsLoaded; else accountCardBlock">
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4">
+    <app-account-card-skeleton *ngFor="let item of [1, 2, 3, 4]">
+    </app-account-card-skeleton>
+  </div>
+</ng-container>
+<ng-template #accountCardBlock>
+  <div
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4">
+    <app-account-card
+      [account]="account"
+      *ngFor="let account of accounts"></app-account-card>
+  </div>
+</ng-template>
