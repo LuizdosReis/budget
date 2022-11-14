@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs';
-import { UnsubComponent } from 'src/app/shared/components/unsub.component';
+import { UnsubComponent } from '@shared/components/unsub.component';
 import { Account } from '../../models/accounts';
 import { MonthYear } from '../../models/monthYear';
 import { DashboardApiService } from '../../services/dashboard-api.service';

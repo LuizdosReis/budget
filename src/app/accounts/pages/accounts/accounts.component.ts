@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
-import { UnsubComponent } from 'src/app/shared/components/unsub.component';
+import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs';
+import { UnsubComponent } from '@shared/components/unsub.component';
 import { Account } from '../../models/account';
 import { AccountsApiService } from '../../services/accounts-api.service';
 
