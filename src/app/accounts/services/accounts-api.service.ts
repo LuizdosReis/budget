@@ -12,9 +12,6 @@ export class AccountsApiService {
   constructor(private http: HttpClient) {}
 
   getAccounts(): Observable<Account[]> {
-    return this.http.get<Account[]>(`${this.URL}/accounts`).pipe(
-      first()
-      //delay(5000),
-    );
+    return this.http.get<Account[]>(`${this.URL}/accounts`).pipe(first());
   }
 }
