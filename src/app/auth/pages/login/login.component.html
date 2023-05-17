@@ -1,0 +1,40 @@
+<div class="min-h-screen flex justify-center items-center">
+  <div class="card flex flex-col">
+    <form [formGroup]="loginForm" (submit)="login()">
+      <div class="mb-6">
+        <label for="username" class="input-label">Usuário</label>
+        <input
+          id="username"
+          formControlName="username"
+          class="input-field"
+          required
+          autofocus />
+        <p
+          *ngIf="submitted && loginForm.get('username')?.hasError('required')"
+          class="input-error">
+          Obrigatório
+        </p>
+      </div>
+      <div class="mb-6">
+        <label for="password" class="input-label">Senha</label>
+        <input
+          id="password"
+          formControlName="password"
+          class="input-field"
+          type="password"
+          required />
+        <p
+          *ngIf="submitted && loginForm.get('password')?.hasError('required')"
+          class="mt-2 text-sm text-red-600 dark:text-red-500">
+          Obrigatório
+        </p>
+      </div>
+      <div class="flex justify-end mb-6">
+        <button type="submit" class="btn-primary">Entrar</button>
+      </div>
+      <div class="flex justify-center">
+        <button class="btn-ghost-small">Esqueci minha senha</button>
+      </div>
+    </form>
+  </div>
+</div>

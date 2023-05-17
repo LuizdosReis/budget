@@ -5,7 +5,6 @@ import { PageComponent } from '../core/page/page/page.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './page/login/login.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { LoginComponent } from './page/login/login.component';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    LoginComponent,
   ],
   imports: [CommonModule, CoreRoutingModule],
   exports: [],

@@ -1,0 +1,30 @@
+.btn {
+    @apply py-3.5 px-5 rounded text-sm;
+
+    &-small { 
+        @apply py-2.5 px-4;
+    }
+
+    &-primary {
+        @apply btn;
+        @apply bg-blue-500 text-white;
+
+        &:hover, &:focus {
+            @apply bg-blue-700;
+        }
+    }
+
+    &-ghost {
+        @apply btn;
+
+        &:hover, &:focus {
+            @apply text-gray-900;
+        }
+
+        &-small {
+            @apply btn-ghost;
+            @apply btn-small;
+        }
+    }
+    
+}

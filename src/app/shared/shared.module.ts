@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   MatDialogModule,
   MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule, HttpClientModule, MatDialogModule],
-  exports: [CommonModule, RouterModule, MatDialogModule],
+  exports: [CommonModule, RouterModule, MatDialogModule, ReactiveFormsModule],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
@@ -25,6 +27,11 @@ import {
           'md:h-fit',
         ],
       },
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true,
     },
   ],
 })

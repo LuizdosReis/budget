@@ -40,6 +40,8 @@ $budget-theme: mat.define-light-theme((
 @import '~swiper/scss';
 
 @import 'styles/components/card';
+@import 'styles/components/buttons';
+@import 'styles/components/forms';
 
 html,
 body {
