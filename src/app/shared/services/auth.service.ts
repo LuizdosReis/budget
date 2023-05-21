@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { AuthenticationResponse } from '../models/authentication-response.model';
 
@@ -10,7 +11,7 @@ export class AuthService {
   readonly URL = '/api/login';
   readonly ACCESS_TOKEN = 'accessToken';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   login(
     username: string,
@@ -27,6 +28,13 @@ export class AuthService {
           this.storeAuthentication(authenticationResponse)
         )
       );
+  }
+
+  logout(): void {
+    localStorage.removeItem(this.ACCESS_TOKEN);
+    this.router.navigateByUrl('/login').catch(error => {
+      console.error('Navigation failed:', error);
+    });
   }
 
   private storeAuthentication(

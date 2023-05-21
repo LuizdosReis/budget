@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@app/shared/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,13 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isMenuOpen = false;
 
+  constructor(private authService: AuthService) {}
+
   openMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  onLogout(): void {
+    this.authService.logout();
   }
 }

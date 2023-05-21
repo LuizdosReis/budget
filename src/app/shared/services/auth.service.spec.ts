@@ -1,18 +1,32 @@
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationResponse } from '../models/authentication-response.model';
+import { AuthService } from './auth.service';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+
+@Component({ template: '' })
+class MockComponent {}
 
 describe('AuthService', () => {
   let service: AuthService;
   let httpController: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
+    TestBed.configureTestingModule({
+      declarations: [MockComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'login', component: MockComponent },
+        ]),
+      ],
+    });
     service = TestBed.inject(AuthService);
     httpController = TestBed.inject(HttpTestingController);
   });
@@ -43,4 +57,11 @@ describe('AuthService', () => {
 
     req.flush(response);
   });
+
+  it('should call logout and remove access Token', fakeAsync(() => {
+    service.logout();
+    expect(service.getAccessToken()).toBeNull();
+    tick();
+    expect(TestBed.inject(Location).path()).toBe('/login');
+  }));
 });

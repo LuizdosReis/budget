@@ -1,27 +1,36 @@
-<div
-  class="shadow-lg py-5 px-7 fixed z-10 w-full bg-white bg-opacity-70 backdrop-blur">
+<header
+  class="shadow-lg py-5 fixed z-10 w-full bg-white bg-opacity-70 backdrop-blur">
   <div class="container mx-auto">
     <nav class="flex justify-between">
-      <div class="flex gap-3 items-center">
-        <img
-          class="rounded-full"
-          src="https://tuk-cdn.s3.amazonaws.com/can-uploader/header-1-svg1.svg"
-          alt="circle" />
-        <h2 class="text-2xl text-gray-800">Budget</h2>
+      <div class="flex">
+        <button (click)="openMenu()" class="md:hidden px-5">
+          <div
+            class="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+            [ngClass]="{
+              'rotate-45': isMenuOpen,
+              'translate-y-1.5': isMenuOpen
+            }"></div>
+          <div
+            class="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+            [ngClass]="{
+              '-rotate-45': isMenuOpen,
+              '-translate-y-1': isMenuOpen
+            }"></div>
+        </button>
+        <button class="flex gap-3 items-center" routerLink="dashboard">
+          <img
+            class="rounded-full"
+            src="https://tuk-cdn.s3.amazonaws.com/can-uploader/header-1-svg1.svg"
+            alt="circle" />
+          <h2 class="text-2xl text-gray-800">Budget</h2>
+        </button>
       </div>
-      <button (click)="openMenu()" class="md:hidden">
-        <div
-          class="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"
-          [ngClass]="{
-            'rotate-45': isMenuOpen,
-            'translate-y-1.5': isMenuOpen
-          }"></div>
-        <div
-          class="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
-          [ngClass]="{
-            '-rotate-45': isMenuOpen,
-            '-translate-y-1': isMenuOpen
-          }"></div>
+      <button
+        data-testid="logout-button"
+        class="btn-ghost-small"
+        (click)="onLogout()">
+        <p>Sair</p>
+        <span class="material-symbols-rounded"> logout </span>
       </button>
     </nav>
     <div
@@ -30,4 +39,4 @@
       <app-menu></app-menu>
     </div>
   </div>
-</div>
+</header>
