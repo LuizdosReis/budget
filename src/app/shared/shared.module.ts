@@ -8,11 +8,25 @@ import {
 } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule, HttpClientModule, MatDialogModule],
-  exports: [CommonModule, RouterModule, MatDialogModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+  ],
+  exports: [
+    CommonModule,
+    RouterModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+  ],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,

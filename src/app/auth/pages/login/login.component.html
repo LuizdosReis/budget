@@ -1,7 +1,10 @@
 <div class="min-h-screen flex justify-center items-center">
-  <div class="card flex flex-col">
-    <form [formGroup]="loginForm" (submit)="login()">
-      <div class="mb-6">
+  <div class="card">
+    <form
+      class="flex flex-col gap-6"
+      [formGroup]="loginForm"
+      (submit)="login()">
+      <div>
         <label for="username" class="input-label">Usuário</label>
         <input
           id="username"
@@ -15,7 +18,7 @@
           Obrigatório
         </p>
       </div>
-      <div class="mb-6">
+      <div>
         <label for="password" class="input-label">Senha</label>
         <input
           id="password"
@@ -28,9 +31,19 @@
           class="mt-2 text-sm text-red-600 dark:text-red-500">
           Obrigatório
         </p>
+        <p
+          data-testid="unauthorized-error"
+          *ngIf="isUnauthorized"
+          class="mt-2 text-sm text-red-600 dark:text-red-500">
+          E-mail ou senha incorretos.
+        </p>
       </div>
-      <div class="flex justify-end mb-6">
-        <button type="submit" class="btn-primary">Entrar</button>
+
+      <div class="flex justify-end">
+        <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+          <mat-spinner *ngIf="isSubmitting" diameter="15"></mat-spinner>
+          <p>Entrar</p>
+        </button>
       </div>
       <div class="flex justify-center">
         <button class="btn-ghost-small">Esqueci minha senha</button>
