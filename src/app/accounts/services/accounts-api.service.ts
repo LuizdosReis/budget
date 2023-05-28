@@ -7,11 +7,15 @@ import { Account } from '../models/account';
   providedIn: 'root',
 })
 export class AccountsApiService {
-  readonly URL = '/mock';
+  readonly URL = '/api/accounts';
 
   constructor(private http: HttpClient) {}
 
   getAccounts(): Observable<Account[]> {
-    return this.http.get<Account[]>(`${this.URL}/accounts`).pipe(first());
+    return this.http.get<Account[]>(this.URL).pipe(first());
+  }
+
+  post(account: any): Observable<any> {
+    return this.http.post<any>(this.URL, account);
   }
 }

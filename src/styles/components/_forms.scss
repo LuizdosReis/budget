@@ -1,5 +1,7 @@
+@import "styles/base/variables";
+
 .input-field {
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-blue-500 block w-full p-2.5;
 }
 
 .input-label {
@@ -8,4 +10,27 @@
 
 .input-error {
     @apply mt-2 text-sm text-red-600;
+}
+
+.input-select {
+  @apply relative flex rounded-lg;
+
+  select {
+    @apply appearance-none outline-none shadow-none;
+    @apply flex-1 cursor-pointer bg-gray-50 border border-gray-300 focus:border-blue-500 text-gray-900 text-sm rounded-lg block w-full p-2.5;
+    @include transition;
+
+  }
+
+  select::-ms-expand {
+    @apply hidden;
+  }
+
+  &:after {
+    @apply top-0 right-0 p-2.5 absolute pointer-events-none cursor-pointer text-gray-900;
+    @include transition;
+
+    content: '\e5cf';
+    font: normal normal normal 17px/1 "Material Symbols Rounded";
+  }
 }

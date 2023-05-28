@@ -1,5 +1,8 @@
+@import "styles/base/variables";
+
 .btn {
-    @apply py-3.5 px-5 rounded text-sm flex gap-3 items-center;
+    @apply py-3.5 px-5 rounded text-sm flex gap-3 items-center outline-none;
+    @include transition;
 
     &-small {
         @apply py-2.5 px-4;
@@ -7,10 +10,10 @@
 
     &-primary {
         @apply btn;
-        @apply bg-blue-500 text-white;
+        @apply bg-blue-700 text-white;
 
         &:hover, &:focus {
-            @apply bg-blue-700;
+            @apply bg-blue-500;
         }
     }
 
@@ -31,5 +34,4 @@
         opacity: 0.25;
         pointer-events: none;
     }
-
 }

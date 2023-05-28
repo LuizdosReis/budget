@@ -1,7 +1,10 @@
+@import "styles/base/variables";
+
 .card {
-    @apply p-10 mt-4 rounded-md border border-slate-200 shadow-lg 
+    @apply p-10 rounded-md border border-slate-200 shadow-lg break-words;
 }
 
 .card-pointer {
-    @apply hover:shadow-none transition-all duration-300 cursor-pointer
+    @apply hover:shadow-none cursor-pointer;
+    @include transition;
 }

@@ -1,9 +1,6 @@
-<div class="flex justify-between items-center">
+<div class="flex justify-between items-center mb-4">
   <h1 class="text-xl font-bold">Contas</h1>
-  <button
-    class="h-10 px-6 font-semibold rounded-md border border-slate-200 mr-1 text-gray-900 flex items-center hover:bg-gray-200 hover:scale-105 transition-all duration-300 ease">
-    Adicionar
-  </button>
+  <button (click)="addAccount()" class="btn-primary">Adicionar</button>
 </div>
 
 <ng-container *ngIf="!accountsLoaded; else accountCardBlock">
@@ -15,7 +12,7 @@
 </ng-container>
 <ng-template #accountCardBlock>
   <div
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4">
+    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
     <app-account-card
       [account]="account"
       *ngFor="let account of accounts"></app-account-card>

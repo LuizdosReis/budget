@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountsComponent } from './accounts.component';
-import { AccountsApiService } from './../../services/accounts-api.service';
-import { Account } from './../../models/account';
 import { of } from 'rxjs';
+import { Account } from './../../models/account';
+import { AccountsApiService } from './../../services/accounts-api.service';
+import { AddAccountService } from './../../services/add-account.service';
+import { AccountsComponent } from './accounts.component';
 
 describe('AccountsComponent', () => {
   let component: AccountsComponent;
@@ -25,6 +26,11 @@ describe('AccountsComponent', () => {
     ['getAccounts']
   );
 
+  const addAccountService = jasmine.createSpyObj<AddAccountService>(
+    'addAccountService',
+    ['run']
+  );
+
   accountsApiService.getAccounts.and.returnValue(of(accounts));
 
   beforeEach(async () => {
@@ -32,6 +38,7 @@ describe('AccountsComponent', () => {
       declarations: [AccountsComponent],
       providers: [
         { provide: AccountsApiService, useValue: accountsApiService },
+        { provide: AddAccountService, useValue: addAccountService },
       ],
     }).compileComponents();
   });

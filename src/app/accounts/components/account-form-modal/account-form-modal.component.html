@@ -1,0 +1,60 @@
+<div>
+  <div class="mb-2 flex justify-between items-center">
+    <h3 class="text-2xl font-extrabold">Conta</h3>
+    <button mat-dialog-close class="btn-ghost-small">
+      <span mat-dialog-close class="material-symbols-rounded">close</span>
+    </button>
+  </div>
+  <div>
+    <form class="flex flex-col gap-6" [formGroup]="form" (submit)="onSubmit()">
+      <div>
+        <label for="name" class="input-label">Nome</label>
+        <input
+          id="name"
+          formControlName="name"
+          class="input-field"
+          required
+          autofocus />
+        <p
+          *ngIf="submitted && form.get('name')?.hasError('required')"
+          class="input-error">
+          Obrigatório
+        </p>
+        <p
+          *ngIf="submitted && form.get('name')?.hasError('minlength')"
+          class="input-error">
+          Deve ter no mínimo 5 caracteres
+        </p>
+        <p
+          *ngIf="submitted && form.get('name')?.hasError('maxlength')"
+          class="input-error">
+          Deve ter no máximo 50 caracteres
+        </p>
+      </div>
+      <div>
+        <label for="currency" class="input-label">Moeda</label>
+        <div class="input-select">
+          <select id="currency" formControlName="currency">
+            <option selected disabled>Escolha uma moeda</option>
+            <option
+              *ngFor="let currency of currencies"
+              [ngValue]="currency.code">
+              {{ currency.description }}
+            </option>
+          </select>
+        </div>
+        <p
+          *ngIf="submitted && form.get('currency')?.hasError('required')"
+          class="input-error">
+          Obrigatório
+        </p>
+      </div>
+      <div class="flex justify-end gap-6">
+        <button mat-dialog-close class="btn-ghost-small">Cancelar</button>
+        <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+          Adicionar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
