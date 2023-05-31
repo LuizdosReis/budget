@@ -1,0 +1,19 @@
+<button (click)="toggleMenu()" class="md:hidden py-3.5 px-5">
+  <div
+    class="m-auto h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+    [ngClass]="{
+      'rotate-45': isMenuOpen,
+      'translate-y-1.5': isMenuOpen
+    }"></div>
+  <div
+    class="m-auto mt-2 h-0.5 w-6 rounded bg-sky-900 transition duration-300"
+    [ngClass]="{
+      '-rotate-45': isMenuOpen,
+      '-translate-y-1': isMenuOpen
+    }"></div>
+</button>
+<div
+  class="md:hidden shadow-lg bg-white z-20 fixed w-1/2 h-screen mt-6 transition-all duration-600 ease-in-out"
+  [ngClass]="{ '-left-1/2': !isMenuOpen, 'left-0': isMenuOpen }">
+  <app-menu (clicked)="toggleMenu()"></app-menu>
+</div>
