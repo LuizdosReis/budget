@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { AuthenticationResponse } from '../models/authentication-response.model';
+import * as jose from 'jose';
 
 @Injectable({
   providedIn: 'root',
@@ -45,5 +46,16 @@ export class AuthService {
 
   getAccessToken(): string | null {
     return localStorage.getItem(this.ACCESS_TOKEN);
+  }
+
+  isAccessTokenValid(): boolean {
+    const accessToken = this.getAccessToken();
+    if (!accessToken) return false;
+    const { exp } = jose.decodeJwt(accessToken);
+    return exp ? exp > this.currentTimestampInSeconds() : false;
+  }
+
+  private currentTimestampInSeconds(): number {
+    return Date.now() / 1000;
   }
 }
