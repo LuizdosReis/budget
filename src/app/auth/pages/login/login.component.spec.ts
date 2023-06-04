@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationResponse } from '@shared/models/authentication-response.model';
-import { AuthService } from '@shared/services/auth.service';
+import { AuthService } from '@app/core/services/auth.service';
 import { of, throwError } from 'rxjs';
 import { LoginComponent } from './login.component';
 import { By } from '@angular/platform-browser';

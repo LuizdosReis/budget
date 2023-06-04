@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
-import { AuthService } from '@shared/services/auth.service';
+import { AuthService } from '@app/core/services/auth.service';
 import {
   HttpClientTestingModule,
   HttpTestingController,

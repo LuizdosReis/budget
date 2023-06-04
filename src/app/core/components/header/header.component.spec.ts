@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { HeaderComponent } from './header.component';
-import { AuthService } from '@shared/services/auth.service';
+import { AuthService } from '@app/core/services/auth.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

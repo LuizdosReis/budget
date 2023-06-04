@@ -7,7 +7,7 @@ import {
   MAT_DIALOG_DEFAULT_OPTIONS,
 } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
+import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-interceptor.interceptor';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
