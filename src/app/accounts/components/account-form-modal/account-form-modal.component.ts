@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-account-form-modal',
@@ -7,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./account-form-modal.component.scss'],
 })
 export class AccountFormModalComponent {
-  form: FormGroup;
+  form: UntypedFormGroup;
   submitted = false;
   isSubmitting = false;
 
@@ -19,7 +23,7 @@ export class AccountFormModalComponent {
     { code: 'USD', description: 'Dolár' },
   ];
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: UntypedFormBuilder) {
     this.form = fb.group({
       name: fb.control('', [
         Validators.required,

@@ -37,7 +37,7 @@ $budget-theme: mat.define-light-theme((
 @tailwind components;
 @tailwind utilities;
 
-@import '~swiper/scss';
+@import 'swiper/scss';
 
 @import 'styles/components/card';
 @import 'styles/components/buttons';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/core/services/auth.service';
 import { finalize } from 'rxjs';
@@ -9,15 +9,15 @@ import { finalize } from 'rxjs';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   submitted = false;
   isSubmitting = false;
   isUnauthorized = false;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+    this.loginForm = new UntypedFormGroup({
+      username: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl('', Validators.required),
     });
   }
 
