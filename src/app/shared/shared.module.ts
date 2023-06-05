@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
-  MatDialogModule,
-  MAT_DIALOG_DEFAULT_OPTIONS,
-} from '@angular/material/dialog';
+  MatLegacyDialogModule as MatDialogModule,
+  MAT_LEGACY_DIALOG_DEFAULT_OPTIONS as MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/legacy-dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-interceptor.interceptor';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 
 @NgModule({
   declarations: [],

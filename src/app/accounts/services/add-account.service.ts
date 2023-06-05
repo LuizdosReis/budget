@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { AccountFormModalComponent } from '@app/accounts/components/account-form-modal/account-form-modal.component';
 import { catchError, EMPTY, Observable, Subject } from 'rxjs';
 import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
