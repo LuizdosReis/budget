@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountFormModalComponent } from './account-form-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AccountFormModalComponent } from './account-form-modal.component';
 
 describe('AccountFormModalComponent', () => {
   let component: AccountFormModalComponent;

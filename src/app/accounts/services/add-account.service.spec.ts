@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AddAccountService } from './add-account.service';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
+import { AddAccountService } from './add-account.service';
 
 describe('AddAccountService', () => {
   let service: AddAccountService;
