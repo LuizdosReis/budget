@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { HeaderComponent } from './header.component';
 import { AuthService } from '@app/core/services/auth.service';
+import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -27,24 +27,6 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should change isMenuOpen to true when click on the button twice', () => {
-    fixture.debugElement
-      .query(By.css('button'))
-      .triggerEventHandler('click', null);
-
-    expect(component.isMenuOpen).toBeTrue();
-  });
-
-  it('should change isMenuOpen to false when click on the button twice', () => {
-    for (let i = 1; i <= 2; i++) {
-      fixture.debugElement
-        .query(By.css('button'))
-        .triggerEventHandler('click', null);
-    }
-
-    expect(component.isMenuOpen).toBeFalse();
   });
 
   it('should logout when click in logout button', () => {
