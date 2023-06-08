@@ -12,7 +12,7 @@ class MockComponent {}
 
 describe('AuthGuard', () => {
   const authServiceSpy = jasmine.createSpyObj<AuthService>('AuthService', [
-    'getAccessToken',
+    'isAccessTokenValid',
   ]);
 
   let guard: AuthGuard;
@@ -38,12 +38,12 @@ describe('AuthGuard', () => {
   });
 
   it('should allow to continue', () => {
-    authServiceSpy.getAccessToken.and.returnValue('token');
+    authServiceSpy.isAccessTokenValid.and.returnValue(true);
     expect(guard.canActivate()).toBeTruthy();
   });
 
   it('should not allow to continue', fakeAsync(() => {
-    authServiceSpy.getAccessToken.and.returnValue('');
+    authServiceSpy.isAccessTokenValid.and.returnValue(false);
 
     expect(guard.canActivate()).toBeFalsy();
     tick();
