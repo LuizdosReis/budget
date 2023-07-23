@@ -1,28 +1,47 @@
-import { TestBed } from '@angular/core/testing';
-
-import { MatDialogModule } from '@angular/material/dialog';
 import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
+import {
+  createServiceFactory,
+  SpectatorService,
+  SpyObject,
+} from '@ngneat/spectator';
+import { of } from 'rxjs';
 import { AddAccountService } from './add-account.service';
+import { MatDialog } from '@angular/material/dialog';
 
 describe('AddAccountService', () => {
-  let service: AddAccountService;
+  let spectator: SpectatorService<AddAccountService>;
+  let accountsApi: SpyObject<AccountsApiService>;
 
-  const accountsApiService = jasmine.createSpyObj<AccountsApiService>(
-    'accountsApiService',
-    ['getAccounts']
-  );
+  const createService = createServiceFactory({
+    service: AddAccountService,
+    mocks: [AccountsApiService, MatDialog],
+  });
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [MatDialogModule],
-      providers: [
-        { provide: AccountsApiService, useValue: accountsApiService },
-      ],
-    });
-    service = TestBed.inject(AddAccountService);
+    spectator = createService();
+    accountsApi = spectator.inject(AccountsApiService);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(spectator.service).toBeTruthy();
+  });
+
+  it('should return when submmited', () => {
+    const accountFormData = {};
+
+    const dialogRef = {
+      componentInstance: {
+        submitAccountForm: of(accountFormData),
+      },
+      close: () => {},
+    };
+
+    spectator.inject(MatDialog).open.andReturn(dialogRef);
+
+    accountsApi.post.and.returnValue(of({}));
+
+    spectator.service.run();
+
+    expect(accountsApi.post).toHaveBeenCalledWith(accountFormData);
   });
 });
