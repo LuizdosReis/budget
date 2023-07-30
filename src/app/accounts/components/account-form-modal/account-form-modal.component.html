@@ -16,16 +16,19 @@
           required
           autofocus />
         <p
+          data-testid="name-input-required-error"
           *ngIf="submitted && form.get('name')?.hasError('required')"
           class="input-error">
           Obrigatório
         </p>
         <p
+          data-testid="name-input-min-length-error"
           *ngIf="submitted && form.get('name')?.hasError('minlength')"
           class="input-error">
           Deve ter no mínimo 5 caracteres
         </p>
         <p
+          data-testid="name-input-max-length-error"
           *ngIf="submitted && form.get('name')?.hasError('maxlength')"
           class="input-error">
           Deve ter no máximo 50 caracteres
@@ -44,6 +47,7 @@
           </select>
         </div>
         <p
+          data-testid="currency-select-required-error"
           *ngIf="submitted && form.get('currency')?.hasError('required')"
           class="input-error">
           Obrigatório
@@ -51,7 +55,11 @@
       </div>
       <div class="flex justify-end gap-6">
         <button mat-dialog-close class="btn-ghost-small">Cancelar</button>
-        <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+        <button
+          data-testid="submit-button"
+          type="submit"
+          class="btn-primary"
+          [disabled]="isSubmitting">
           Adicionar
         </button>
       </div>

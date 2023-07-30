@@ -1,9 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
+  FormControl,
+  FormGroup,
+  NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
+
+export interface AccountData {
+  name: string;
+  currency: string;
+}
 
 @Component({
   selector: 'app-account-form-modal',
@@ -11,11 +17,14 @@ import {
   styleUrls: ['./account-form-modal.component.scss'],
 })
 export class AccountFormModalComponent {
-  form: UntypedFormGroup;
+  form: FormGroup<{
+    name: FormControl<string>;
+    currency: FormControl<string>;
+  }>;
   submitted = false;
   isSubmitting = false;
 
-  @Output() submitAccountForm = new EventEmitter<any>();
+  @Output() submitAccountForm = new EventEmitter<AccountData>();
 
   readonly currencies: { code: string; description: string }[] = [
     { code: 'BRL', description: 'Real' },
@@ -23,22 +32,28 @@ export class AccountFormModalComponent {
     { code: 'USD', description: 'Dolár' },
   ];
 
-  constructor(fb: UntypedFormBuilder) {
-    this.form = fb.group({
-      name: fb.control('', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(50),
-      ]),
-      currency: fb.control('', Validators.required),
+  constructor(private fb: NonNullableFormBuilder) {
+    this.form = this.fb.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(50),
+        ],
+      ],
+      currency: ['', Validators.required],
     });
   }
   onSubmit(): void {
     this.submitted = true;
 
     if (this.form.valid) {
-      this.submitAccountForm.emit(this.form.value);
       this.isSubmitting = true;
+      this.submitAccountForm.emit({
+        name: this.form.value.name ?? '',
+        currency: this.form.value.currency ?? '',
+      });
     }
   }
 }
