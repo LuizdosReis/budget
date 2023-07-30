@@ -50,10 +50,7 @@ export class AccountFormModalComponent {
 
     if (this.form.valid) {
       this.isSubmitting = true;
-      this.submitAccountForm.emit({
-        name: this.form.value.name ?? '',
-        currency: this.form.value.currency ?? '',
-      });
+      this.submitAccountForm.emit(this.form.getRawValue());
     }
   }
 }
