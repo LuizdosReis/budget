@@ -1,6 +1,8 @@
 <div class="flex justify-between items-center mb-4">
   <h1 class="text-xl font-bold">Contas</h1>
-  <button (click)="addAccount()" class="btn-primary">Adicionar</button>
+  <button data-testid="add-button" (click)="addAccount()" class="btn-primary">
+    Adicionar
+  </button>
 </div>
 
 <ng-container *ngIf="!accountsLoaded; else accountCardBlock">

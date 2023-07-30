@@ -1,14 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { of } from 'rxjs';
 import { Account } from './../../models/account';
 import { AccountsApiService } from './../../services/accounts-api.service';
 import { AddAccountService } from './../../services/add-account.service';
 import { AccountsComponent } from './accounts.component';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 describe('AccountsComponent', () => {
-  let component: AccountsComponent;
-  let fixture: ComponentFixture<AccountsComponent>;
+  let spectator: Spectator<AccountsComponent>;
 
   const accounts: Account[] = [
     {
@@ -31,25 +29,31 @@ describe('AccountsComponent', () => {
     ['run']
   );
 
-  accountsApiService.getAccounts.and.returnValue(of(accounts));
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AccountsComponent],
-      providers: [
-        { provide: AccountsApiService, useValue: accountsApiService },
-        { provide: AddAccountService, useValue: addAccountService },
-      ],
-    }).compileComponents();
+  const createComponent = createComponentFactory<AccountsComponent>({
+    component: AccountsComponent,
+    providers: [
+      { provide: AccountsApiService, useValue: accountsApiService },
+      { provide: AddAccountService, useValue: addAccountService },
+    ],
+    shallow: true,
   });
 
+  accountsApiService.getAccounts.and.returnValue(of(accounts));
+
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should call add account service when click on add button', () => {
+    addAccountService.run.and.returnValue(of(undefined));
+
+    spectator.click('[ data-testid="add-button"]');
+
+    expect(addAccountService.run).toHaveBeenCalled();
+    expect(accountsApiService.getAccounts).toHaveBeenCalledTimes(2);
   });
 });
