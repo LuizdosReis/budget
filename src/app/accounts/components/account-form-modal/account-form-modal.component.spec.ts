@@ -1,9 +1,7 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  AccountData,
-  AccountFormModalComponent,
-} from './account-form-modal.component';
+import { AccountFormModalComponent } from './account-form-modal.component';
 import { byText, createComponentFactory, Spectator } from '@ngneat/spectator';
+import { AccountData } from '../../models/account-data';
 
 describe('AccountFormModalComponent', () => {
   let spectator: Spectator<AccountFormModalComponent>;

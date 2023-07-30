@@ -5,11 +5,7 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
-
-export interface AccountData {
-  name: string;
-  currency: string;
-}
+import { AccountData } from '../../models/account-data';
 
 @Component({
   selector: 'app-account-form-modal',

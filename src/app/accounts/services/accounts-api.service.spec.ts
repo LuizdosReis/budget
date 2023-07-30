@@ -1,17 +1,35 @@
-import { TestBed } from '@angular/core/testing';
-
 import { AccountsApiService } from './accounts-api.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  createHttpFactory,
+  HttpMethod,
+  SpectatorHttp,
+} from '@ngneat/spectator';
+import { AccountData } from '../models/account-data';
 
 describe('AccountsApiService', () => {
-  let service: AccountsApiService;
+  let spectator: SpectatorHttp<AccountsApiService>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
-    service = TestBed.inject(AccountsApiService);
-  });
+  const createHttp = createHttpFactory(AccountsApiService);
+
+  beforeEach(() => (spectator = createHttp()));
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(spectator.service).toBeTruthy();
+  });
+
+  it('should call get accounts', () => {
+    spectator.service.getAccounts().subscribe();
+    spectator.expectOne(spectator.service.URL, HttpMethod.GET);
+  });
+
+  it('should call post account with account in the body', () => {
+    const account: AccountData = {
+      name: 'Nubank',
+      currency: 'BRL',
+    };
+
+    spectator.service.post(account).subscribe();
+    const req = spectator.expectOne(spectator.service.URL, HttpMethod.POST);
+    expect(req.request.body).toEqual(account);
   });
 });
