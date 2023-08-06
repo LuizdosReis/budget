@@ -2,12 +2,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccountFormModalComponent } from './account-form-modal.component';
 import { byText, createComponentFactory, Spectator } from '@ngneat/spectator';
 import { AccountData } from '../../models/account-data';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Account } from '@app/accounts/models/account';
 
 describe('AccountFormModalComponent', () => {
   let spectator: Spectator<AccountFormModalComponent>;
+  const data: { account: Account | undefined } = { account: undefined };
+
   const createComponent = createComponentFactory<AccountFormModalComponent>({
     component: AccountFormModalComponent,
     imports: [ReactiveFormsModule],
+    providers: [
+      {
+        provide: MAT_DIALOG_DATA,
+        useValue: data,
+      },
+    ],
   });
   const accountData: AccountData = {
     name: 'Nubank',
@@ -15,6 +25,7 @@ describe('AccountFormModalComponent', () => {
   };
 
   beforeEach(() => {
+    data.account = undefined;
     spectator = createComponent();
   });
 
@@ -83,5 +94,19 @@ describe('AccountFormModalComponent', () => {
     expect(
       spectator.query('[data-testid="name-input-min-length-error"]')
     ).toBeVisible();
+  });
+
+  it('should initiate the form with the account values', () => {
+    data.account = {
+      id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+      name: 'Nubank',
+      currency: 'USD',
+    };
+
+    spectator = createComponent();
+
+    const { name, currency } = spectator.component.form.value;
+    expect(name).toEqual(data.account.name);
+    expect(currency).toEqual(data.account.currency);
   });
 });

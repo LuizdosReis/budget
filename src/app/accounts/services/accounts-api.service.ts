@@ -19,4 +19,8 @@ export class AccountsApiService {
   post(account: AccountData): Observable<Account> {
     return this.http.post<Account>(this.URL, account);
   }
+
+  put(id: string, account: AccountData): Observable<Account> {
+    return this.http.put<Account>(`${this.URL}/${id}`, account);
+  }
 }

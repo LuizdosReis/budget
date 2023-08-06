@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Account } from '@app/accounts/models/account';
 import { AccountData } from '../../models/account-data';
 
 @Component({
@@ -28,7 +30,10 @@ export class AccountFormModalComponent {
     { code: 'USD', description: 'Dolár' },
   ];
 
-  constructor(private fb: NonNullableFormBuilder) {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    @Inject(MAT_DIALOG_DATA) data: { account: Account }
+  ) {
     this.form = this.fb.group({
       name: [
         '',
@@ -40,6 +45,10 @@ export class AccountFormModalComponent {
       ],
       currency: ['', Validators.required],
     });
+
+    if (data.account) {
+      this.form.patchValue(data.account);
+    }
   }
   onSubmit(): void {
     this.submitted = true;

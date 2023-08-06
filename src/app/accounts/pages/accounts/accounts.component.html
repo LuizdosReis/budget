@@ -16,7 +16,9 @@
   <div
     class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
     <app-account-card
+      *ngFor="let account of accounts"
       [account]="account"
-      *ngFor="let account of accounts"></app-account-card>
+      data-testid="account-card"
+      (edited)="loadAccounts()"></app-account-card>
   </div>
 </ng-template>

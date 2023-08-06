@@ -22,7 +22,7 @@ describe('AccountsApiService', () => {
     spectator.expectOne(spectator.service.URL, HttpMethod.GET);
   });
 
-  it('should call post account with account in the body', () => {
+  it('should call post with account in the body', () => {
     const account: AccountData = {
       name: 'Nubank',
       currency: 'BRL',
@@ -30,6 +30,21 @@ describe('AccountsApiService', () => {
 
     spectator.service.post(account).subscribe();
     const req = spectator.expectOne(spectator.service.URL, HttpMethod.POST);
+    expect(req.request.body).toEqual(account);
+  });
+
+  it('should call put with account id in the url and account in the body', () => {
+    const id = 'ecdfd059-c798-43f2-8daf-9e8692216632';
+    const account: AccountData = {
+      name: 'Nubank',
+      currency: 'BRL',
+    };
+
+    spectator.service.put(id, account).subscribe();
+    const req = spectator.expectOne(
+      `${spectator.service.URL}/${id}`,
+      HttpMethod.PUT
+    );
     expect(req.request.body).toEqual(account);
   });
 });

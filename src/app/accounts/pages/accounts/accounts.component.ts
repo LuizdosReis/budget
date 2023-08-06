@@ -25,7 +25,7 @@ export class AccountsComponent extends UnsubComponent implements OnInit {
     this.loadAccounts();
   }
 
-  private loadAccounts(): void {
+  loadAccounts(): void {
     this.accountsLoaded = false;
     this.accountApiService
       .getAccounts()

@@ -1,28 +1,30 @@
+import {
+  createComponentFactory,
+  Spectator,
+  SpyObject,
+} from '@ngneat/spectator';
 import { of } from 'rxjs';
 import { Account } from './../../models/account';
 import { AccountsApiService } from './../../services/accounts-api.service';
 import { AddAccountService } from './../../services/add-account.service';
 import { AccountsComponent } from './accounts.component';
-import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 describe('AccountsComponent', () => {
   let spectator: Spectator<AccountsComponent>;
+  let accountsApiService: SpyObject<AccountsApiService>;
 
   const accounts: Account[] = [
     {
+      id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
       name: 'Nubank',
       currency: 'BRL',
     },
     {
+      id: 'ecdfd059-c798-43f2-8daf-9e8692216633',
       name: 'Nubank',
       currency: 'BRL',
     },
   ];
-
-  const accountsApiService = jasmine.createSpyObj<AccountsApiService>(
-    'accountsApiService',
-    ['getAccounts']
-  );
 
   const addAccountService = jasmine.createSpyObj<AddAccountService>(
     'addAccountService',
@@ -31,17 +33,17 @@ describe('AccountsComponent', () => {
 
   const createComponent = createComponentFactory<AccountsComponent>({
     component: AccountsComponent,
-    providers: [
-      { provide: AccountsApiService, useValue: accountsApiService },
-      { provide: AddAccountService, useValue: addAccountService },
-    ],
+    providers: [{ provide: AddAccountService, useValue: addAccountService }],
+    mocks: [AccountsApiService],
     shallow: true,
+    detectChanges: false,
   });
-
-  accountsApiService.getAccounts.and.returnValue(of(accounts));
 
   beforeEach(() => {
     spectator = createComponent();
+    accountsApiService = spectator.inject(AccountsApiService);
+    accountsApiService.getAccounts.and.returnValue(of(accounts));
+    spectator.detectChanges();
   });
 
   it('should create', () => {
@@ -54,6 +56,20 @@ describe('AccountsComponent', () => {
     spectator.click('[ data-testid="add-button"]');
 
     expect(addAccountService.run).toHaveBeenCalled();
-    expect(accountsApiService.getAccounts).toHaveBeenCalledTimes(2);
+    expect(
+      spectator.inject(AccountsApiService).getAccounts
+    ).toHaveBeenCalledTimes(2);
+  });
+
+  it('should load accounts when account triggers edited event', () => {
+    spectator.triggerEventHandler(
+      '[ data-testid="account-card"]',
+      'edited',
+      null
+    );
+
+    expect(
+      spectator.inject(AccountsApiService).getAccounts
+    ).toHaveBeenCalledTimes(2);
   });
 });
