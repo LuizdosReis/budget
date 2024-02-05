@@ -6,7 +6,7 @@
     "changeOrigin": true
   },
   "/api/*": {
-    "target": "https://budgetapi-production.up.railway.app/",
+    "target": "https://budgetapi-production.up.railway.app",
     "secure": true,
     "logLevel": "debug",
     "changeOrigin": true
