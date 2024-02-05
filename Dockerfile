@@ -13,7 +13,5 @@ RUN npm run build
 #stage 2
 FROM nginx:alpine
 
-VOLUME /var/cache/nginx
-
 COPY --from=node /app/dist/budget /usr/share/nginx/html
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
