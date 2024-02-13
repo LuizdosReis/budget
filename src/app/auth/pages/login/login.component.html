@@ -1,9 +1,6 @@
 <div class="min-h-screen flex justify-center items-center">
   <div class="card">
-    <form
-      class="flex flex-col gap-6"
-      [formGroup]="loginForm"
-      (submit)="login()">
+    <form class="flex flex-col gap-6" [formGroup]="loginForm">
       <div>
         <label for="username" class="input-label">Usuário</label>
         <input
@@ -39,14 +36,16 @@
         </p>
       </div>
 
-      <div class="flex justify-end">
-        <button type="submit" class="btn-primary" [disabled]="isSubmitting">
-          <mat-spinner *ngIf="isSubmitting" diameter="15"></mat-spinner>
-          <p>Entrar</p>
-        </button>
-      </div>
-      <div class="flex justify-center">
-        <button class="btn-ghost-small">Esqueci minha senha</button>
+      <div class="flex flex-col gap-2">
+        <app-button
+          [block]="true"
+          [disabled]="isSubmitting"
+          [loading]="isSubmitting"
+          text="Entrar"
+          (clicked)="login()">
+        </app-button>
+        <app-button variant="ghost" [block]="true" text="Esqueci minha senha">
+        </app-button>
       </div>
     </form>
   </div>

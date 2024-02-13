@@ -6,26 +6,25 @@ import {
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-interceptor.interceptor';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ButtonComponent],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
   ],
   exports: [
     CommonModule,
     RouterModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
+    ButtonComponent,
   ],
   providers: [
     {
