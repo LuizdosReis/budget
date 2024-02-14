@@ -46,7 +46,7 @@ export class AccountFormModalComponent {
       currency: ['', Validators.required],
     });
 
-    if (data.account) {
+    if (data?.account) {
       this.form.patchValue(data.account);
     }
   }
