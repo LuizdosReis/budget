@@ -11,13 +11,13 @@
           <h2 class="text-2xl text-gray-800">Budget</h2>
         </button>
       </div>
-      <button
+      <app-button
         data-testid="logout-button"
-        class="btn-ghost-small"
-        (click)="onLogout()">
-        <p>Sair</p>
-        <span class="material-symbols-rounded"> logout </span>
-      </button>
+        variant="ghost"
+        text="Sair"
+        rightIcon="logout"
+        (clicked)="onLogout()">
+      </app-button>
     </nav>
   </div>
 </header>
