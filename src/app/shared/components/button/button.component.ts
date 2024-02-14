@@ -21,5 +21,6 @@ export class ButtonComponent {
   @Input() text = '';
   @Input() loading = false;
   @Input() icon: string | undefined;
+  @Input() rightIcon: string | undefined;
   @Output() clicked: EventEmitter<void> = new EventEmitter<void>();
 }
