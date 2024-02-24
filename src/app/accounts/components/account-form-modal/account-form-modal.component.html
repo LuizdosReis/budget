@@ -53,15 +53,14 @@
       </div>
     </div>
     <div class="flex justify-end gap-2">
-      <app-button mat-dialog-close variant="ghost" text="Cancelar">
-      </app-button>
-      <app-button
+      <button appButton mat-dialog-close variant="secondary">Cancelar</button>
+      <button
+        appButton
         data-testid="submit-button"
-        [disabled]="isSubmitting"
-        [loading]="isSubmitting"
-        text="Adicionar"
-        (clicked)="onSubmit()">
-      </app-button>
+        [isLoading]="isSubmitting"
+        (click)="onSubmit()">
+        Adicionar
+      </button>
     </div>
   </form>
 </div>

@@ -37,15 +37,16 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <app-button
+        <button
+          appButton
           [block]="true"
-          [disabled]="isSubmitting"
-          [loading]="isSubmitting"
-          text="Entrar"
-          (clicked)="login()">
-        </app-button>
-        <app-button variant="ghost" [block]="true" text="Esqueci minha senha">
-        </app-button>
+          [isLoading]="isSubmitting"
+          (click)="login()">
+          Entrar
+        </button>
+        <button appButton variant="ghost" [block]="true">
+          Esqueci minha senha
+        </button>
       </div>
     </form>
   </div>

@@ -8,10 +8,9 @@ import {
 } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-interceptor.interceptor';
-import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [ButtonComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,13 +18,7 @@ import { ButtonComponent } from './components/button/button.component';
     MatDialogModule,
     ReactiveFormsModule,
   ],
-  exports: [
-    CommonModule,
-    RouterModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    ButtonComponent,
-  ],
+  exports: [CommonModule, RouterModule, MatDialogModule, ReactiveFormsModule],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,

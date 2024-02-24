@@ -5,7 +5,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
 import { SharedModule } from '@shared/shared.module';
-import { CommonModule } from '@angular/common';
+import { ButtonDirective } from '@shared/directives/button.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
     MenuComponent,
     HeaderMenuComponent,
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, ButtonDirective],
   exports: [PageComponent],
 })
 export class CoreModule {
