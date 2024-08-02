@@ -4,6 +4,7 @@ import { byText, createComponentFactory, Spectator } from '@ngneat/spectator';
 import { AccountData } from '../../models/account-data';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Account } from '@app/accounts/models/account';
+import { SharedModule } from '@shared/shared.module';
 
 describe('AccountFormModalComponent', () => {
   let spectator: Spectator<AccountFormModalComponent>;
@@ -11,7 +12,7 @@ describe('AccountFormModalComponent', () => {
 
   const createComponent = createComponentFactory<AccountFormModalComponent>({
     component: AccountFormModalComponent,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, SharedModule],
     providers: [
       {
         provide: MAT_DIALOG_DATA,

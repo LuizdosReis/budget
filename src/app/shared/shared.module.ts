@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-interceptor.interceptor';
+import { ButtonDirective } from './directives/button.directive';
 
 @NgModule({
   declarations: [],
@@ -17,8 +18,15 @@ import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-intercep
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
+    ButtonDirective,
   ],
-  exports: [CommonModule, RouterModule, MatDialogModule, ReactiveFormsModule],
+  exports: [
+    CommonModule,
+    RouterModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    ButtonDirective,
+  ],
   providers: [
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,

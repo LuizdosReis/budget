@@ -6,7 +6,6 @@ import { AccountCardSkeletonComponent } from './components/account-card-skeleton
 import { AccountCardComponent } from './components/account-card/account-card.component';
 import { AccountFormModalComponent } from './components/account-form-modal/account-form-modal.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
-import { ButtonDirective } from '@shared/directives/button.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +14,6 @@ import { ButtonDirective } from '@shared/directives/button.directive';
     AccountCardSkeletonComponent,
     AccountFormModalComponent,
   ],
-  imports: [CommonModule, AccountsRoutingModule, SharedModule, ButtonDirective],
+  imports: [CommonModule, AccountsRoutingModule, SharedModule],
 })
 export class AccountsModule {}
