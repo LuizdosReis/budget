@@ -2,16 +2,32 @@ import { EditAccountService } from './edit-account.service';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
 import { MatDialog } from '@angular/material/dialog';
-import { delay, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { Account } from '@app/accounts/models/account';
 import { AccountFormModalComponent } from '@app/accounts/components/account-form-modal/account-form-modal.component';
+import { DeleteAccountService } from '@app/accounts/services/delete-account.service';
+import { AccountData } from '@app/accounts/models/account-data';
 
 describe('EditAccountService', () => {
   let spectator: SpectatorService<EditAccountService>;
-
+  const account: Account = {
+    id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+    name: 'Nubank',
+    currency: 'BRL',
+  };
   const createService = createServiceFactory<EditAccountService>({
     service: EditAccountService,
-    mocks: [AccountsApiService, MatDialog],
+    mocks: [AccountsApiService, MatDialog, DeleteAccountService],
+  });
+  const createDialogRef = (overrides?: {
+    submitAccountForm?: Observable<AccountData>;
+    deleteClicked?: Observable<void>;
+  }) => ({
+    componentInstance: {
+      submitAccountForm: of(),
+      deleteClicked: of(),
+      ...overrides,
+    },
   });
 
   beforeEach(() => {
@@ -22,29 +38,27 @@ describe('EditAccountService', () => {
     expect(spectator.service).toBeTruthy();
   });
 
+  it('should open dialog with account data', () => {
+    spectator.inject(MatDialog).open.andReturn(createDialogRef());
+
+    spectator.service.run(account);
+
+    expect(spectator.inject(MatDialog).open).toHaveBeenCalledWith(
+      AccountFormModalComponent,
+      {
+        data: { account },
+      }
+    );
+  });
+
   it('should call api service with account when dialog is submitted', done => {
-    const accountFormData = {};
-
-    const dialogRef = {
-      componentInstance: {
-        submitAccountForm: of(accountFormData).pipe(delay(500)),
-      },
-      close: () => {},
-    };
-
-    const matDialog = spectator.inject(MatDialog);
-
+    const accountFormData = { name: account.name, currency: account.currency };
+    const dialogRef = createDialogRef({
+      submitAccountForm: of(accountFormData).pipe(delay(500)),
+    });
     spectator.inject(MatDialog).open.andReturn(dialogRef);
-
     const accountsApiService = spectator.inject(AccountsApiService);
-
     accountsApiService.put.and.returnValue(of(undefined));
-
-    const account: Account = {
-      id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
-      name: 'Nubank',
-      currency: 'BRL',
-    };
 
     spectator.service.run(account).subscribe(() => {
       expect(accountsApiService.put).toHaveBeenCalledWith(
@@ -53,9 +67,20 @@ describe('EditAccountService', () => {
       );
       done();
     });
+  });
 
-    expect(matDialog.open).toHaveBeenCalledWith(AccountFormModalComponent, {
-      data: { account },
+  it('should call delete account service with account when dialog output deleteClicked event', done => {
+    const dialogRef = createDialogRef({
+      deleteClicked: of(undefined).pipe(delay(500)),
+    });
+    spectator.inject(MatDialog).open.andReturn(dialogRef);
+
+    const deleteAccountService = spectator.inject(DeleteAccountService);
+    deleteAccountService.delete.and.returnValue(of(undefined));
+
+    spectator.service.run(account).subscribe(() => {
+      expect(deleteAccountService.delete).toHaveBeenCalledWith(account);
+      done();
     });
   });
 });

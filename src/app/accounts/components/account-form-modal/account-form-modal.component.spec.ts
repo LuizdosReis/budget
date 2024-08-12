@@ -1,6 +1,11 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountFormModalComponent } from './account-form-modal.component';
-import { byText, createComponentFactory, Spectator } from '@ngneat/spectator';
+import {
+  byTestId,
+  byText,
+  createComponentFactory,
+  Spectator,
+} from '@ngneat/spectator';
 import { AccountData } from '../../models/account-data';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Account } from '@app/accounts/models/account';
@@ -49,8 +54,8 @@ describe('AccountFormModalComponent', () => {
       done();
     });
 
-    spectator.click('[data-testid="submit-button"]');
-    expect(spectator.query('[data-testid="submit-button"]')).toBeDisabled();
+    spectator.click(byTestId('submit-button'));
+    expect(spectator.query(byTestId('submit-button'))).toBeDisabled();
   });
 
   it('should not submits an invalid form', () => {
@@ -109,5 +114,34 @@ describe('AccountFormModalComponent', () => {
     const { name, currency } = spectator.component.form.value;
     expect(name).toEqual(data.account.name);
     expect(currency).toEqual(data.account.currency);
+  });
+
+  it('should have a delete button when is editing', () => {
+    data.account = {
+      id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+      name: 'Nubank',
+      currency: 'USD',
+    };
+
+    spectator = createComponent();
+
+    expect(spectator.query(byTestId('delete-button'))).toBeVisible();
+  });
+
+  it('should not have a delete button when is not editing', () => {
+    expect(spectator.query(byTestId('delete-button'))).not.toBeVisible();
+  });
+
+  it('should call onDelete when click delete button', () => {
+    data.account = {
+      id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+      name: 'Nubank',
+      currency: 'USD',
+    };
+    spectator = createComponent();
+    const deleteClickedSpy = spyOn(spectator.component.deleteClicked, 'next');
+
+    spectator.click(byTestId('delete-button'));
+    expect(deleteClickedSpy).toHaveBeenCalled();
   });
 });

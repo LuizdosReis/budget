@@ -23,4 +23,8 @@ export class AccountsApiService {
   put(id: string, account: AccountData): Observable<Account> {
     return this.http.put<Account>(`${this.URL}/${id}`, account);
   }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.URL}/${id}`);
+  }
 }

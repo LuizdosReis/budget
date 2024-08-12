@@ -21,8 +21,10 @@ export class AccountFormModalComponent {
   }>;
   submitted = false;
   isSubmitting = false;
+  isEditing = false;
 
   @Output() submitAccountForm = new EventEmitter<AccountData>();
+  @Output() deleteClicked = new EventEmitter<void>();
 
   readonly currencies: { code: string; description: string }[] = [
     { code: 'BRL', description: 'Real' },
@@ -32,7 +34,7 @@ export class AccountFormModalComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    @Inject(MAT_DIALOG_DATA) data: { account: Account }
+    @Inject(MAT_DIALOG_DATA) public data: { account: Account | undefined }
   ) {
     this.form = this.fb.group({
       name: [
@@ -47,6 +49,7 @@ export class AccountFormModalComponent {
     });
 
     if (data?.account) {
+      this.isEditing = true;
       this.form.patchValue(data.account);
     }
   }
