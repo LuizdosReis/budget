@@ -1,8 +1,10 @@
 <button
   data-testid="edit-button"
   (click)="edit()"
-  class="card card-pointer h-full w-full">
-  <h3 class="mb-2 text-xl font-bold text-left">{{ account.name }}</h3>
+  class="border shadow-lg p-6 rounded-md border-slate-200 h-full w-full truncate whitespace-nowrap">
+  <h3 class="mb-2 text-xl font-bold text-left text-ellipsis overflow-hidden">
+    {{ account.name }}
+  </h3>
   <div class="flex gap-2">
     <p class="font-medium">Moeda</p>
     <p>{{ account.currency }}</p>
