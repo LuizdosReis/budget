@@ -13,6 +13,7 @@
     }"></div>
 </button>
 <div
+  data-testid="app-menu"
   class="md:hidden shadow-lg bg-white z-20 fixed w-1/2 h-screen mt-6 transition-all duration-600 ease-in-out"
   [ngClass]="{ '-left-1/2': !isMenuOpen, 'left-0': isMenuOpen }">
   <app-menu (clicked)="toggleMenu()"></app-menu>
