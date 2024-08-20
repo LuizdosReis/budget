@@ -15,8 +15,10 @@
 </ng-container>
 
 <ng-template #accountCardBlock>
-  <app-account-card *ngFor="let account of accounts" [account]="account">
-  </app-account-card>
+  <app-account-dashboard-card
+    *ngFor="let account of accounts"
+    [account]="account">
+  </app-account-dashboard-card>
   <p
     *ngIf="!accounts?.length"
     data-testid="there-is-no-accounts"

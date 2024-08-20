@@ -4,11 +4,10 @@ import { Account } from '../../models/accounts';
 import { AccountModalComponent } from '../account-modal/account-modal.component';
 
 @Component({
-  selector: 'app-account-card',
-  templateUrl: './account-card.component.html',
-  styleUrls: ['./account-card.component.scss'],
+  selector: 'app-account-dashboard-card',
+  templateUrl: './account-dashboard-card.component.html',
 })
-export class AccountCardComponent {
+export class AccountDashboardCardComponent {
   @Input() account!: Account;
 
   constructor(public dialog: MatDialog) {}
