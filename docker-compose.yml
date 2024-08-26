@@ -8,4 +8,4 @@ services:
       BUDGET_API_HOST: https://budget-production-41ba.up.railway.app
       BUDGET_API_PORT: 443
     ports:
-      - "80:80"
+      - "4200:80"
