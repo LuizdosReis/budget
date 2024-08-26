@@ -13,9 +13,9 @@
   <div class="flex justify-end gap-2">
     <button appButton mat-dialog-close variant="secondary">Cancelar</button>
     <button
-      data-testId="confirmationLabel"
+      data-testId="confirmationButton"
       appButton
-      (click)="handleConfirmedClick()"
+      (click)="onConfirmedClick()"
       [isLoading]="isLoading">
       {{ data.confirmationLabel }}
     </button>

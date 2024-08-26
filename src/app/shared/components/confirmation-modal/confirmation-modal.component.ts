@@ -19,7 +19,7 @@ export class ConfirmationModalComponent {
     public data: { title: string; message: string; confirmationLabel: string }
   ) {}
 
-  protected handleConfirmedClick(): void {
+  protected onConfirmedClick(): void {
     this.isLoading = true;
     this.confirmed.emit();
   }
