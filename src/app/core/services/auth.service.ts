@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
 import { AuthenticationResponse } from '@shared/models/authentication-response.model';
 import * as jose from 'jose';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -51,11 +51,15 @@ export class AuthService {
   isAccessTokenValid(): boolean {
     const accessToken = this.getAccessToken();
     if (!accessToken) return false;
-    const { exp } = jose.decodeJwt(accessToken);
-    return exp ? exp > this.currentTimestampInSeconds() : false;
+    try {
+      const { exp } = jose.decodeJwt(accessToken);
+      return exp ? exp > this.currentTimestampInSeconds() : false;
+    } catch (error) {
+      return false;
+    }
   }
 
   private currentTimestampInSeconds(): number {
-    return Date.now() / 1000;
+    return Math.floor(Date.now() / 1000);
   }
 }

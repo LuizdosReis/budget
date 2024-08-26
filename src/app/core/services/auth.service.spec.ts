@@ -10,12 +10,22 @@ import { AuthService } from './auth.service';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
-@Component({ template: '' })
+@Component({
+  selector: 'app-mock',
+  template: '',
+})
 class MockComponent {}
 
 describe('AuthService', () => {
   let service: AuthService;
   let httpController: HttpTestingController;
+
+  const EXPY_JWT =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+  const VALID_JWT =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjMzMjYwOTc2MDAwfQ.Ok2GSD6gZhjkEoa2cdCUN9En_yUUIYh3Cg2p2s9P5vY';
+  const INVALID_JWT =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjMzMjYwOTc2MDAQfQ.Ok2GSD6gZhjkEoa2cdCUN9En_yUUIYh3Cg2p2s9P5vZ';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -64,4 +74,32 @@ describe('AuthService', () => {
     tick();
     expect(TestBed.inject(Location).path()).toBe('/login');
   }));
+
+  it('should return false when there is no accessToken set', () => {
+    expect(service.isAccessTokenValid()).toBeFalsy();
+  });
+
+  it('should return false when accessToken expired', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(EXPY_JWT);
+
+    expect(service.isAccessTokenValid()).toBeFalsy();
+  });
+
+  it('should return true when accessToken is valid', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(VALID_JWT);
+
+    expect(service.isAccessTokenValid()).toBeTrue();
+  });
+
+  it('should return false when accessToken is not valid', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(INVALID_JWT);
+
+    expect(service.isAccessTokenValid()).toBeFalsy();
+  });
+
+  it('should return false when accessToken is null', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(null);
+
+    expect(service.isAccessTokenValid()).toBeFalsy();
+  });
 });
