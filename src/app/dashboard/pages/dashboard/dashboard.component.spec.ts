@@ -95,7 +95,7 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-account-card')).length
+      fixture.debugElement.queryAll(By.css('app-account-dashboard-card')).length
     ).toBe(accounts.length);
   });
 
@@ -110,7 +110,7 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-account-card')).length
+      fixture.debugElement.queryAll(By.css('app-account-dashboard-card')).length
     ).toBe(0);
   });
 
