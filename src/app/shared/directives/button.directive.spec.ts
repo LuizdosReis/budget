@@ -1,10 +1,10 @@
+import { createDirectiveFactory } from '@ngneat/spectator';
 import {
   base,
   ButtonDirective,
   sizeClasses,
   variantClasses,
 } from './button.directive';
-import { createDirectiveFactory } from '@ngneat/spectator';
 
 describe('ButtonDirective', () => {
   const createDirective = createDirectiveFactory({
@@ -96,13 +96,6 @@ describe('ButtonDirective', () => {
     expect(spinSpan).toHaveText('progress_activity');
   });
 
-  it('should be disabled when isLoading is true', () => {
-    const spectator = createDirective(
-      '<button appButton [isLoading]="true">Text</button>'
-    );
-    expect(spectator.element).toHaveAttribute('disabled');
-  });
-
   it('should not have animated spin span when isLoading is false', () => {
     const spectator = createDirective(
       '<button appButton [isLoading]="false">Text</button>'
@@ -111,10 +104,71 @@ describe('ButtonDirective', () => {
     expect(spinSpan).toBeFalsy();
   });
 
+  it('should remove the spinner when isLoading changes from true to false', () => {
+    const spectator = createDirective(
+      '<button appButton [isLoading]="isLoading">Text</button>'
+    );
+    spectator.setInput('isLoading', true);
+
+    let spinSpan = spectator.element.querySelector('span.animate-spin');
+    expect(spinSpan).toBeTruthy();
+    expect(spinSpan).toHaveClass('animate-spin material-symbols-rounded');
+    expect(spinSpan).toHaveText('progress_activity');
+
+    spectator.setInput('isLoading', false);
+
+    spinSpan = spectator.element.querySelector('span.animate-spin');
+    expect(spinSpan).toBeFalsy();
+  });
+
+  it('should be disabled when isLoading is true', () => {
+    const spectator = createDirective(
+      '<button appButton [isLoading]="true">Text</button>'
+    );
+    expect(spectator.element).toHaveAttribute('disabled');
+  });
+
   it('should not be disabled when isLoading is false', () => {
     const spectator = createDirective(
       '<button appButton [isLoading]="false">Text</button>'
     );
     expect(spectator.element).not.toHaveAttribute('disabled');
+  });
+
+  it('should remove original content when isLoading is true', () => {
+    const spectator = createDirective(
+      '<button appButton [isLoading]="isLoading">Text</button>'
+    );
+
+    expect(spectator.element.textContent).toContain('Text');
+
+    spectator.setInput('isLoading', true);
+    spectator.detectChanges();
+
+    expect(spectator.element.textContent).not.toContain('Text');
+
+    const spinnerElement = spectator.query('span.animate-spin');
+    expect(spinnerElement).toBeTruthy();
+    expect(spectator.element.children.length).toBe(1);
+  });
+
+  it('should add original content when isLoading is false', () => {
+    const spectator = createDirective(
+      '<button appButton [isLoading]="isLoading">Text</button>'
+    );
+
+    expect(spectator.element.textContent).toContain('Text');
+
+    spectator.setInput('isLoading', true);
+    spectator.detectChanges();
+
+    expect(spectator.element.textContent).not.toContain('Text');
+
+    spectator.setInput('isLoading', false);
+    spectator.detectChanges();
+
+    expect(spectator.element.textContent).toContain('Text');
+    const spinnerElement = spectator.query('span.animate-spin');
+    expect(spinnerElement).toBeFalsy();
   });
 });

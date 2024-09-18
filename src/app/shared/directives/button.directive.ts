@@ -32,6 +32,7 @@ export class ButtonDirective {
   private _variant: Variant = 'primary';
   private _size: Size = 'default';
   private _block = false;
+  private originalContent: Node[] = [];
 
   @HostBinding('class')
   private classes = this.buildClasses(this._variant, this._size, this._block);
@@ -57,6 +58,7 @@ export class ButtonDirective {
       this.addSpinnerSpanElement();
     } else {
       this.removeSpinnerSpanElement();
+      this.restoreOriginalContent();
     }
   }
 
@@ -66,6 +68,15 @@ export class ButtonDirective {
   ) {}
 
   private addSpinnerSpanElement(): void {
+    this.originalContent = Array.from(this.elementRef.nativeElement.childNodes);
+    const width = this.elementRef.nativeElement.offsetWidth;
+    this.renderer2.setStyle(
+      this.elementRef.nativeElement,
+      'width',
+      `${width}px`
+    );
+    this.renderer2.setProperty(this.elementRef.nativeElement, 'innerHTML', '');
+
     const spinner = this.renderer2.createElement('span') as HTMLSpanElement;
     this.renderer2.addClass(spinner, 'animate-spin');
     this.renderer2.addClass(spinner, 'material-symbols-rounded');
@@ -81,10 +92,27 @@ export class ButtonDirective {
   }
 
   private removeSpinnerSpanElement(): void {
-    this.renderer2.removeChild(
-      this.elementRef.nativeElement,
-      'span.animate-spin'
-    );
+    const spinner =
+      this.elementRef.nativeElement.querySelector('span.animate-spin');
+    if (spinner) {
+      this.renderer2.setProperty(
+        this.elementRef.nativeElement,
+        'innerHTML',
+        ''
+      );
+      this.renderer2.removeChild(this.elementRef.nativeElement, spinner);
+    }
+  }
+
+  private restoreOriginalContent(): void {
+    if (this.originalContent.length > 0) {
+      this.originalContent.forEach(node => {
+        this.renderer2.appendChild(
+          this.elementRef.nativeElement,
+          node.cloneNode(true)
+        );
+      });
+    }
   }
 
   private buildClasses(variant: Variant, size: Size, block: boolean): string {
