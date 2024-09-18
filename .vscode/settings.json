@@ -15,7 +15,7 @@
       "editor.formatOnSave": false
   },
   "sonarlint.connectedMode.project": {
-    "connectionId": "olmero",
-    "projectKey": "olmero_ng2-pp-core"
+    "connectionId": "dosreisluiz",
+    "projectKey": "LuizdosReis_budget"
   }
 }
