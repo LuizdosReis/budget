@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
@@ -12,15 +16,14 @@ import { ButtonDirective } from './directives/button.directive';
 
 @NgModule({
   declarations: [],
-  imports: [
+  exports: [
     CommonModule,
     RouterModule,
-    HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
     ButtonDirective,
   ],
-  exports: [
+  imports: [
     CommonModule,
     RouterModule,
     MatDialogModule,
@@ -47,6 +50,7 @@ import { ButtonDirective } from './directives/button.directive';
       useClass: AuthInterceptorInterceptor,
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
 })
 export class SharedModule {}

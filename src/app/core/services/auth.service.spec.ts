@@ -1,14 +1,18 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
+import { Location } from '@angular/common';
 import {
-  HttpClientTestingModule,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
   HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationResponse } from '@shared/models/authentication-response.model';
 import { AuthService } from './auth.service';
-import { Component } from '@angular/core';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-mock',
@@ -31,10 +35,13 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       declarations: [MockComponent],
       imports: [
-        HttpClientTestingModule,
         RouterTestingModule.withRoutes([
           { path: 'login', component: MockComponent },
         ]),
+      ],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     });
     service = TestBed.inject(AuthService);

@@ -1,15 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
-import { AuthService } from '@app/core/services/auth.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
   HttpRequest,
+  provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { AuthService } from '@app/core/services/auth.service';
+import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 
 describe('AuthInterceptorInterceptor', () => {
   let httpController: HttpTestingController;
@@ -21,7 +23,7 @@ describe('AuthInterceptorInterceptor', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [],
       providers: [
         AuthInterceptorInterceptor,
         {
@@ -30,6 +32,8 @@ describe('AuthInterceptorInterceptor', () => {
           multi: true,
         },
         { provide: AuthService, useValue: authServiceSpy },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     });
     httpController = TestBed.inject(HttpTestingController);

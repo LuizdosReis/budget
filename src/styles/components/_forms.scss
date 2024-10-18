@@ -1,4 +1,4 @@
-@import "styles/base/variables";
+@use "../base/variables" as variables;
 
 .input-field {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-blue-500 block w-full p-2.5;
@@ -18,8 +18,7 @@
   select {
     @apply appearance-none outline-none shadow-none;
     @apply flex-1 cursor-pointer bg-gray-50 border border-gray-300 focus:border-blue-500 text-gray-900 text-sm rounded-lg block w-full p-2.5;
-    @include transition;
-
+    @include variables.transition;
   }
 
   select::-ms-expand {
@@ -28,7 +27,7 @@
 
   &:after {
     @apply top-0 right-0 p-2.5 absolute pointer-events-none cursor-pointer text-gray-900;
-    @include transition;
+    @include variables.transition;
 
     content: '\e5cf';
     font: normal normal normal 17px/1 "Material Symbols Rounded";
