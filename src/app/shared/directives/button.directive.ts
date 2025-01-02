@@ -77,13 +77,10 @@ export class ButtonDirective {
     );
     this.renderer2.setProperty(this.elementRef.nativeElement, 'innerHTML', '');
 
-    const spinner = this.renderer2.createElement('span') as HTMLSpanElement;
+    const spinner = this.renderer2.createElement('i') as HTMLElement;
+    this.renderer2.addClass(spinner, 'fa-solid');
+    this.renderer2.addClass(spinner, 'fa-circle-notch');
     this.renderer2.addClass(spinner, 'animate-spin');
-    this.renderer2.addClass(spinner, 'material-symbols-rounded');
-    this.renderer2.appendChild(
-      spinner,
-      this.renderer2.createText('progress_activity')
-    );
     this.renderer2.insertBefore(
       this.elementRef.nativeElement,
       spinner,
@@ -93,7 +90,7 @@ export class ButtonDirective {
 
   private removeSpinnerSpanElement(): void {
     const spinner =
-      this.elementRef.nativeElement.querySelector('span.animate-spin');
+      this.elementRef.nativeElement.querySelector('i.animate-spin');
     if (spinner) {
       this.renderer2.setProperty(
         this.elementRef.nativeElement,

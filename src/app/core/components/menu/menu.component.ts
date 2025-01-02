@@ -12,12 +12,12 @@ export class MenuComponent {
     {
       link: '/dashboard',
       name: 'Dashboard',
-      icon: 'dashboard',
+      icon: 'fa-chart-line',
     },
     {
       link: '/accounts',
       name: 'Contas',
-      icon: 'account_balance',
+      icon: 'fa-building-columns',
     },
   ];
 }

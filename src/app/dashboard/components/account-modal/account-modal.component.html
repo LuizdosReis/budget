@@ -3,9 +3,11 @@
     <h3 class="text-2xl font-extrabold">
       {{ account?.name }}
     </h3>
-    <span mat-dialog-close class="material-symbols-rounded cursor-pointer">
-      close
-    </span>
+    <button
+      mat-dialog-close
+      class="btn-icon-ghost-small absolute top-4 right-4">
+      <i class="fa-solid fa-xmark fa-xl"></i>
+    </button>
   </div>
 
   <div class="flex flex-col md:flex-row gap-4 w-full">

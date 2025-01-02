@@ -92,8 +92,7 @@ describe('ButtonDirective', () => {
     );
     const spinSpan = spectator.element.children.item(0);
     expect(spinSpan).toBeTruthy();
-    expect(spinSpan).toHaveClass('animate-spin material-symbols-rounded');
-    expect(spinSpan).toHaveText('progress_activity');
+    expect(spinSpan).toHaveClass('fa-solid fa-circle-notch animate-spin');
   });
 
   it('should not have animated spin span when isLoading is false', () => {
@@ -110,10 +109,8 @@ describe('ButtonDirective', () => {
     );
     spectator.setInput('isLoading', true);
 
-    let spinSpan = spectator.element.querySelector('span.animate-spin');
+    let spinSpan = spectator.element.querySelector('i.animate-spin');
     expect(spinSpan).toBeTruthy();
-    expect(spinSpan).toHaveClass('animate-spin material-symbols-rounded');
-    expect(spinSpan).toHaveText('progress_activity');
 
     spectator.setInput('isLoading', false);
 
@@ -147,7 +144,7 @@ describe('ButtonDirective', () => {
 
     expect(spectator.element.textContent).not.toContain('Text');
 
-    const spinnerElement = spectator.query('span.animate-spin');
+    const spinnerElement = spectator.query('i.animate-spin');
     expect(spinnerElement).toBeTruthy();
     expect(spectator.element.children.length).toBe(1);
   });

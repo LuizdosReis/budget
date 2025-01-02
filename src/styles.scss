@@ -1,3 +1,4 @@
+@use 'styles/base/fontawesome';
 @use 'styles/components/card';
 @use 'styles/components/forms';
 @use 'swiper/scss';
@@ -41,3 +42,5 @@ body {
 * {
   box-sizing: border-box;
 }
+
+
