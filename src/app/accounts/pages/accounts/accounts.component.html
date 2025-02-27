@@ -1,24 +1,25 @@
-<div class="flex justify-between items-center mb-4">
-  <h1 class="text-xl font-bold">Contas</h1>
-  <button appButton data-testid="add-button" (click)="addAccount()">
-    Adicionar
-  </button>
+<div class="flex flex-col gap-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-4xl font-bold">Contas</h1>
+    <button appButton data-testid="add-button" (click)="addAccount()">
+      Adicionar
+    </button>
+  </div>
+  <ng-container *ngIf="!accountsLoaded; else accountCardBlock">
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <app-account-card-skeleton *ngFor="let item of [1, 2, 3, 4]">
+      </app-account-card-skeleton>
+    </div>
+  </ng-container>
+  <ng-template #accountCardBlock>
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <app-account-card
+        *ngFor="let account of accounts"
+        [account]="account"
+        data-testid="account-card"
+        (edited)="loadAccounts()"></app-account-card>
+    </div>
+  </ng-template>
 </div>
-
-<ng-container *ngIf="!accountsLoaded; else accountCardBlock">
-  <div
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4">
-    <app-account-card-skeleton *ngFor="let item of [1, 2, 3, 4]">
-    </app-account-card-skeleton>
-  </div>
-</ng-container>
-<ng-template #accountCardBlock>
-  <div
-    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-    <app-account-card
-      *ngFor="let account of accounts"
-      [account]="account"
-      data-testid="account-card"
-      (edited)="loadAccounts()"></app-account-card>
-  </div>
-</ng-template>

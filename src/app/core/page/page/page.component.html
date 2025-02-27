@@ -1,13 +1,11 @@
-<div class="flex flex-col min-h-screen">
+<div class="min-h-screen flex flex-col gap-4 bg-gray-200">
   <app-header></app-header>
-  <div class="container mx-auto mt-24 mb-6 flex grow w-full">
-    <aside class="hidden md:block w-1/5 sticky h-fit top-24">
+  <div class="grow flex">
+    <aside class="hidden pt-24 md:block sticky bg-white">
       <app-menu></app-menu>
     </aside>
-    <main class="md:w-4/5 w-full">
+    <main class="mt-24 px-8 w-full mx-auto overflow-hidden">
       <router-outlet></router-outlet>
     </main>
   </div>
-
-  <footer class="bg-gray-900">Footer</footer>
 </div>

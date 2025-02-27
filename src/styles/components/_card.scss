@@ -1,7 +1,7 @@
 @use "../base/variables" as variables;
 
 .card {
-    @apply p-10 rounded-md border border-slate-200 shadow-lg break-words;
+    @apply bg-white p-10 rounded-md border border-slate-200 shadow-lg break-words;
 }
 
 .card-pointer {

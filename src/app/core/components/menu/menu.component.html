@@ -1,10 +1,10 @@
-<div class="pb-2 px-2">
+<div class="flex flex-col gap-4 pb-2 px-4">
   <a
     *ngFor="let menu of menus"
     [routerLink]="menu.link"
     [routerLinkActive]="['text-gray-900', 'bg-gray-200']"
     (click)="clicked.emit()"
-    class="flex gap-3 items-center rounded-md px-2 py-3 first:mt-0 mt-2 hover:bg-gray-200 focus:bg-gray-200 transition-all duration-300 ease hover:pl-4">
+    class="flex gap-3 items-center rounded-md px-2 py-3 hover:bg-gray-200 focus:bg-gray-200 transition-all duration-300 ease">
     <i class="fa-solid fa-xl" [class]="menu.icon"></i>
     <h3>{{ menu.name }}</h3>
   </a>
