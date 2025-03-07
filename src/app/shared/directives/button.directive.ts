@@ -7,14 +7,37 @@ import {
 } from '@angular/core';
 
 export const base =
-  'font-semibold transition-all disabled:opacity-50 px-6 py-3 rounded-lg duration-300 flex justify-center gap-3';
+  'font-semibold transition-all disabled:opacity-50 px-6 py-3 rounded-lg duration-300 flex justify-center gap-3 focus:outline-none focus:ring-2';
 
-type Variant = 'primary' | 'secondary' | 'ghost';
+export type Variant = 'primary' | 'secondary' | 'ghost';
 export const variantClasses: { [key in Variant]: string } = {
-  primary: 'bg-blue-500 hover:bg-blue-600 text-white',
-  secondary:
-    'border border-blue-500 hover:border-blue-600 text-blue-500 hover:text-blue-600',
-  ghost: 'text-blue-500 hover:text-blue-600',
+  primary: 'text-white',
+  secondary: 'border',
+  ghost: '',
+};
+
+export type Color = 'primary' | 'secondary' | 'danger';
+export const colorsClasses: { [key in Variant]: { [key in Color]: string } } = {
+  primary: {
+    primary: 'bg-primary-500 hover:bg-primary-600 focus:ring-primary-300',
+    secondary:
+      'bg-secondary-500 hover:bg-secondary-600 focus:ring-secondary-300',
+    danger: 'bg-danger-500 hover:bg-danger-600 focus:ring-danger-300',
+  },
+  secondary: {
+    primary:
+      'border-primary-500 hover:border-primary-600 text-primary-500 hover:text-primary-600 focus:ring-primary-300',
+    secondary:
+      'border-secondary-500 hover:border-secondary-600 text-secondary-500 hover:text-secondary-600 focus:ring-secondary-300',
+    danger:
+      'border-danger-500 hover:border-danger-600 text-danger-500 hover:text-danger-600 focus:ring-danger-300',
+  },
+  ghost: {
+    primary: 'text-primary-500 hover:text-primary-600 focus:ring-primary-300',
+    secondary:
+      'text-secondary-500 hover:text-secondary-600 focus:ring-secondary-300',
+    danger: 'text-danger-500 hover:text-danger-600 focus:ring-danger-300',
+  },
 };
 
 type Size = 'default' | 'small' | 'extra-small';
@@ -32,24 +55,55 @@ export class ButtonDirective {
   private _variant: Variant = 'primary';
   private _size: Size = 'default';
   private _block = false;
+  private _color: Color = 'primary';
   private originalContent: Node[] = [];
 
   @HostBinding('class')
-  private classes = this.buildClasses(this._variant, this._size, this._block);
+  private classes = this.buildClasses(
+    this._variant,
+    this._color,
+    this._size,
+    this._block
+  );
 
   @Input() set variant(value: Variant) {
     this._variant = value;
-    this.classes = this.buildClasses(this._variant, this._size, this._block);
+    this.classes = this.buildClasses(
+      this._variant,
+      this._color,
+      this._size,
+      this._block
+    );
   }
 
   @Input() set size(value: Size) {
     this._size = value;
-    this.classes = this.buildClasses(this._variant, this._size, this._block);
+    this.classes = this.buildClasses(
+      this._variant,
+      this._color,
+      this._size,
+      this._block
+    );
+  }
+
+  @Input() set color(value: Color) {
+    this._color = value;
+    this.classes = this.buildClasses(
+      this._variant,
+      this._color,
+      this._size,
+      this._block
+    );
   }
 
   @Input() set block(value: boolean) {
     this._block = value;
-    this.classes = this.buildClasses(this._variant, this._size, this._block);
+    this.classes = this.buildClasses(
+      this._variant,
+      this._color,
+      this._size,
+      this._block
+    );
   }
 
   @Input() set isLoading(value: boolean) {
@@ -112,8 +166,16 @@ export class ButtonDirective {
     }
   }
 
-  private buildClasses(variant: Variant, size: Size, block: boolean): string {
-    return `${base} ${variantClasses[variant]} ${sizeClasses[size]}
+  private buildClasses(
+    variant: Variant,
+    color: Color,
+    size: Size,
+    block: boolean
+  ): string {
+    console.log(variant);
+    return `${base} ${variantClasses[variant]} ${
+      colorsClasses[variant][color]
+    } ${sizeClasses[size]}
     ${block ? 'w-full' : ''}`;
   }
 }

@@ -2,7 +2,10 @@ import { createDirectiveFactory } from '@ngneat/spectator';
 import {
   base,
   ButtonDirective,
+  Color,
+  colorsClasses,
   sizeClasses,
+  Variant,
   variantClasses,
 } from './button.directive';
 
@@ -40,13 +43,26 @@ describe('ButtonDirective', () => {
       .forEach(clazz => expect(spectator.element).toHaveClass(clazz));
   });
 
-  it('should have ghost variant classes when ghost variant is set', () => {
-    const spectator = createDirective(
-      '<button appButton variant="ghost">Text</button>'
-    );
-    variantClasses['ghost']
+  it('should have primary color classes by default', () => {
+    const spectator = createDirective('<button appButton>Text</button>');
+    colorsClasses['primary']['primary']
       .split(' ')
       .forEach(clazz => expect(spectator.element).toHaveClass(clazz));
+  });
+
+  const variants: Variant[] = ['primary', 'secondary', 'ghost'];
+  const colors: Color[] = ['primary', 'secondary', 'danger'];
+  variants.forEach(variant => {
+    colors.forEach(color => {
+      it(`should have colors when ${variant} and ${color} is set`, () => {
+        const spectator = createDirective(
+          `<button appButton variant=${variant} color=${color}>Text</button>`
+        );
+        colorsClasses[variant][color]
+          .split(' ')
+          .forEach(clazz => expect(spectator.element).toHaveClass(clazz));
+      });
+    });
   });
 
   it('should have default size classes by default', () => {
