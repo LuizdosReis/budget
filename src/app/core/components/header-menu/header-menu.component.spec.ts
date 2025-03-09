@@ -1,8 +1,8 @@
-import { byTestId, createHostFactory, Spectator } from '@ngneat/spectator';
+import { byTestId, createHostFactory, SpectatorHost } from '@ngneat/spectator';
 import { HeaderMenuComponent } from './header-menu.component';
 
 describe('HeaderMenuComponent', () => {
-  let spectator: Spectator<HeaderMenuComponent>;
+  let spectator: SpectatorHost<HeaderMenuComponent>;
   const createHost = createHostFactory<HeaderMenuComponent>({
     component: HeaderMenuComponent,
   });

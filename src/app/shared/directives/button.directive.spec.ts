@@ -123,12 +123,12 @@ describe('ButtonDirective', () => {
     const spectator = createDirective(
       '<button appButton [isLoading]="isLoading">Text</button>'
     );
-    spectator.setInput('isLoading', true);
+    spectator.setHostInput({ isLoading: true });
 
     let spinSpan = spectator.element.querySelector('i.animate-spin');
     expect(spinSpan).toBeTruthy();
 
-    spectator.setInput('isLoading', false);
+    spectator.setHostInput({ isLoading: false });
 
     spinSpan = spectator.element.querySelector('span.animate-spin');
     expect(spinSpan).toBeFalsy();
@@ -155,7 +155,7 @@ describe('ButtonDirective', () => {
 
     expect(spectator.element.textContent).toContain('Text');
 
-    spectator.setInput('isLoading', true);
+    spectator.setHostInput({ isLoading: true });
     spectator.detectChanges();
 
     expect(spectator.element.textContent).not.toContain('Text');
@@ -172,12 +172,12 @@ describe('ButtonDirective', () => {
 
     expect(spectator.element.textContent).toContain('Text');
 
-    spectator.setInput('isLoading', true);
+    spectator.setHostInput({ isLoading: true });
     spectator.detectChanges();
 
     expect(spectator.element.textContent).not.toContain('Text');
 
-    spectator.setInput('isLoading', false);
+    spectator.setHostInput({ isLoading: false });
     spectator.detectChanges();
 
     expect(spectator.element.textContent).toContain('Text');
