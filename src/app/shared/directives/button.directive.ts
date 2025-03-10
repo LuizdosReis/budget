@@ -172,7 +172,6 @@ export class ButtonDirective {
     size: Size,
     block: boolean
   ): string {
-    console.log(variant);
     return `${base} ${variantClasses[variant]} ${
       colorsClasses[variant][color]
     } ${sizeClasses[size]}
