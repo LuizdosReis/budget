@@ -19,5 +19,10 @@ export class MenuComponent {
       name: 'Contas',
       icon: 'fa-building-columns',
     },
+    {
+      link: '/categories',
+      name: 'Categories',
+      icon: 'fa-tag',
+    },
   ];
 }
