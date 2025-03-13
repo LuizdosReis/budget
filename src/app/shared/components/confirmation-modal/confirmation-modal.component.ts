@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { ButtonDirective } from '@shared/directives/button.directive';
+import { ButtonDirective, Color } from '@shared/directives/button.directive';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -16,11 +16,22 @@ export class ConfirmationModalComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: { title: string; message: string; confirmationLabel: string }
+    public data: {
+      title: string;
+      message: string;
+      confirmationLabel: string;
+      confirmationColor?: Color;
+    }
   ) {}
 
   protected onConfirmedClick(): void {
     this.isLoading = true;
     this.confirmed.emit();
+  }
+
+  protected get confirmationColor(): Color {
+    return this.data.confirmationColor
+      ? this.data.confirmationColor
+      : 'primary';
   }
 }
