@@ -41,4 +41,10 @@ describe('CategoriesApiService', () => {
 
     req.flush(expectedCategories);
   });
+
+  it('should call delete with account id in the url', () => {
+    const id = 'ecdfd059-c798-43f2-8daf-9e8692216632';
+    spectator.service.delete(id).subscribe();
+    spectator.expectOne(`${spectator.service.URL}/${id}`, HttpMethod.DELETE);
+  });
 });
