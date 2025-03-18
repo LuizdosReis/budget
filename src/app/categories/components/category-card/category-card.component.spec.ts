@@ -2,13 +2,16 @@ import { CategoryCardComponent } from './category-card.component';
 import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
 import { Type } from '../../models/Type';
 import { Category } from '../../models/Category';
+import { DeleteCategoryService } from '../../services/delete-category.service';
+import { of } from 'rxjs';
 
 describe('CategoryCardComponent', () => {
   let spectator: Spectator<CategoryCardComponent>;
 
-  const createComponent = createComponentFactory<CategoryCardComponent>(
-    CategoryCardComponent
-  );
+  const createComponent = createComponentFactory<CategoryCardComponent>({
+    component: CategoryCardComponent,
+    mocks: [DeleteCategoryService],
+  });
 
   const category: Category = {
     id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
@@ -54,5 +57,19 @@ describe('CategoryCardComponent', () => {
 
       expect(spectator.query(byTestId('tag'))).toHaveClass(clazz);
     });
+  });
+
+  it('should call delete service when delete button is clicked', () => {
+    const deleteCategoryService = spectator.inject(DeleteCategoryService);
+    spectator.click(byTestId('delete-button'));
+    expect(deleteCategoryService.execute).toHaveBeenCalledWith(category);
+  });
+
+  it('should emit onChanged event when delete category is executed ', () => {
+    const deleteCategoryService = spectator.inject(DeleteCategoryService);
+    const spy = spyOn(spectator.component.onChanged, 'emit');
+    deleteCategoryService.execute.and.returnValue(of({}));
+    spectator.click(byTestId('delete-button'));
+    expect(spy).toHaveBeenCalled();
   });
 });
