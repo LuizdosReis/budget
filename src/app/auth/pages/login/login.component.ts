@@ -18,7 +18,10 @@ export class LoginComponent {
   isSubmitting = false;
   isUnauthorized = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = new UntypedFormGroup({
       username: new UntypedFormControl('', Validators.required),
       password: new UntypedFormControl('', Validators.required),

@@ -7,7 +7,10 @@ import { AuthService } from '@app/core/services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   canActivate():
     | Observable<boolean | UrlTree>

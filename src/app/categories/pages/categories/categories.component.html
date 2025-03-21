@@ -4,14 +4,17 @@
     <button appButton data-testid="add-button">Adicionar</button>
   </div>
   <div class="flex flex-col gap-4">
-    @if (!categoriesLoaded) { @for (item of [1, 2, 3]; track item) {
-    <app-category-card-skeleton
-      data-testid="category-card-skeleton"></app-category-card-skeleton>
-
-    } } @else { @for (category of categories; track category.id) {
-    <app-category-card
-      [category]="category"
-      data-testid="category-card"></app-category-card>
-    } }
+    @if (!categoriesLoaded) {
+      @for (item of [1, 2, 3]; track item) {
+        <app-category-card-skeleton
+          data-testid="category-card-skeleton"></app-category-card-skeleton>
+      }
+    } @else {
+      @for (category of categories; track category.id) {
+        <app-category-card
+          [category]="category"
+          data-testid="category-card"></app-category-card>
+      }
+    }
   </div>
 </div>

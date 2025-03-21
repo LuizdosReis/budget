@@ -12,7 +12,10 @@ export class AuthService {
   readonly URL = '/api/login';
   readonly ACCESS_TOKEN = 'accessToken';
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
   login(
     username: string,
@@ -55,6 +58,7 @@ export class AuthService {
       const { exp } = jose.decodeJwt(accessToken);
       return exp ? exp > this.currentTimestampInSeconds() : false;
     } catch (error) {
+      console.error('failed to parse the accessToken', error);
       return false;
     }
   }

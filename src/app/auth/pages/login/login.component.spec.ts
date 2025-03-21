@@ -59,9 +59,9 @@ describe('LoginComponent', () => {
 
   it('should show unauthorized message when auth login returns error', () => {
     authService.login.and.returnValue(
-      throwError(() => {
-        error: 401;
-      })
+      throwError(() => ({
+        error: 401,
+      }))
     );
 
     const form = {
