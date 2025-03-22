@@ -1,15 +1,15 @@
-import { CategoriesComponent } from './categories.component';
+import { fakeAsync, tick } from '@angular/core/testing';
 import {
   byTestId,
   createComponentFactory,
   Spectator,
   SpyObject,
 } from '@ngneat/spectator';
-import { CategoriesApiService } from '../../services/categories-api.service';
 import { delay, of } from 'rxjs';
 import { Category } from '../../models/Category';
-import { Type } from '@app/categories/models/Type';
-import { fakeAsync, tick } from '@angular/core/testing';
+import { Type } from '../../models/Type';
+import { CategoriesApiService } from '../../services/categories-api.service';
+import { CategoriesComponent } from './categories.component';
 
 describe('CategoriesComponent', () => {
   let spectator: Spectator<CategoriesComponent>;

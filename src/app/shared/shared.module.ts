@@ -11,7 +11,7 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
-import { AuthInterceptorInterceptor } from '@app/core/interceptors/auth-interceptor.interceptor';
+import { AuthInterceptorInterceptor } from '@core/interceptors/auth-interceptor.interceptor';
 import { ButtonDirective } from './directives/button.directive';
 
 @NgModule({

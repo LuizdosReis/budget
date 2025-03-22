@@ -1,4 +1,3 @@
-import { CategoriesApiService } from './categories-api.service';
 import {
   createHttpFactory,
   HttpMethod,
@@ -6,6 +5,7 @@ import {
 } from '@ngneat/spectator';
 import { Category } from '../models/Category';
 import { Type } from '../models/Type';
+import { CategoriesApiService } from './categories-api.service';
 
 describe('CategoriesApiService', () => {
   let spectator: SpectatorHttp<CategoriesApiService>;

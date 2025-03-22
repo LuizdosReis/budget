@@ -1,15 +1,15 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccountFormModalComponent } from './account-form-modal.component';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   byTestId,
   byText,
   createComponentFactory,
   Spectator,
 } from '@ngneat/spectator';
-import { AccountData } from '../../models/account-data';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Account } from '@app/accounts/models/account';
 import { SharedModule } from '@shared/shared.module';
+import { Account } from '../../models/account';
+import { AccountData } from '../../models/account-data';
+import { AccountFormModalComponent } from './account-form-modal.component';
 
 describe('AccountFormModalComponent', () => {
   let spectator: Spectator<AccountFormModalComponent>;

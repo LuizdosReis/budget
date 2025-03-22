@@ -1,5 +1,3 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-
 import { Location } from '@angular/common';
 import {
   provideHttpClient,
@@ -10,6 +8,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationResponse } from '@shared/models/authentication-response.model';
 import { AuthService } from './auth.service';

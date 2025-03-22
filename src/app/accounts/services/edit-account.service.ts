@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Account } from '@app/accounts/models/account';
-import { Observable, Subject, switchMap } from 'rxjs';
-import { AccountFormModalComponent } from '@app/accounts/components/account-form-modal/account-form-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
-import { DeleteAccountService } from '@app/accounts/services/delete-account.service';
+import { Observable, Subject, switchMap } from 'rxjs';
+import { AccountFormModalComponent } from '../components/account-form-modal/account-form-modal.component';
+import { Account } from '../models/account';
+import { AccountsApiService } from './accounts-api.service';
+import { DeleteAccountService } from './delete-account.service';
 
 @Injectable({
   providedIn: 'root',

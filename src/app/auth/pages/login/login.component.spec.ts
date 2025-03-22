@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AuthenticationResponse } from '@shared/models/authentication-response.model';
-import { AuthService } from '@app/core/services/auth.service';
-import { of, throwError } from 'rxjs';
-import { LoginComponent } from './login.component';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of, throwError } from 'rxjs';
+import { AuthService } from '@core/services/auth.service';
+import { AuthenticationResponse } from '@shared/models/authentication-response.model';
+import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

@@ -1,9 +1,9 @@
+import { MatDialog } from '@angular/material/dialog';
+import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
 import { Account } from '../../models/accounts';
 
-import { AccountDashboardCardComponent } from './account-dashboard-card.component';
-import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
-import { MatDialog } from '@angular/material/dialog';
 import { AccountModalComponent } from '../account-modal/account-modal.component';
+import { AccountDashboardCardComponent } from './account-dashboard-card.component';
 
 describe('AccountDashboardCardComponent', () => {
   let spectator: Spectator<AccountDashboardCardComponent>;

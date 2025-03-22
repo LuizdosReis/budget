@@ -1,9 +1,9 @@
-import { CategoryCardComponent } from './category-card.component';
 import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
-import { Type } from '../../models/Type';
-import { Category } from '../../models/Category';
-import { DeleteCategoryService } from '../../services/delete-category.service';
 import { of } from 'rxjs';
+import { Category } from '../../models/Category';
+import { Type } from '../../models/Type';
+import { DeleteCategoryService } from '../../services/delete-category.service';
+import { CategoryCardComponent } from './category-card.component';
 
 describe('CategoryCardComponent', () => {
   let spectator: Spectator<CategoryCardComponent>;

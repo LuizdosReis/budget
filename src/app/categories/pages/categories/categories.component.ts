@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonDirective } from '@shared/directives/button.directive';
-import { UnsubComponent } from '@shared/components/unsub.component';
 import { takeUntil } from 'rxjs';
+import { UnsubComponent } from '@shared/components/unsub.component';
+import { ButtonDirective } from '@shared/directives/button.directive';
+import { CategoryCardComponent } from '../../components/category-card/category-card.component';
+import { CategoryCardSkeletonComponent } from '../../components/category-card-skeleton/category-card-skeleton.component';
 import { Category } from '../../models/Category';
 import { CategoriesApiService } from '../../services/categories-api.service';
-import { CategoryCardSkeletonComponent } from '../../components/category-card-skeleton/category-card-skeleton.component';
-import { CategoryCardComponent } from '../../components/category-card/category-card.component';
 
 @Component({
   selector: 'app-categories',

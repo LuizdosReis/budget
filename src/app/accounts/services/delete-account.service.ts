@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Account } from '@app/accounts/models/account';
-import { Observable, Subject, switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, Subject, switchMap } from 'rxjs';
 import { ConfirmationModalComponent } from '@shared/components/confirmation-modal/confirmation-modal.component';
-import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
+import { Account } from '../models/account';
+import { AccountsApiService } from '../services/accounts-api.service';
 
 @Injectable({
   providedIn: 'root',

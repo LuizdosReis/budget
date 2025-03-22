@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationResponse } from '@shared/models/authentication-response.model';
 import * as jose from 'jose';
 import { Observable, tap } from 'rxjs';
+import { AuthenticationResponse } from '@shared/models/authentication-response.model';
 
 @Injectable({
   providedIn: 'root',

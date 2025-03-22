@@ -5,8 +5,8 @@
     "baseUrl": "src",
     "paths": {
       "@env/*": ["environments/*"],
-      "@app/*": ["app/*"],
-      "@shared/*": ["app/shared/*"]
+      "@shared/*": ["app/shared/*"],
+      "@core/*": ["app/core/*"]
     },
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,

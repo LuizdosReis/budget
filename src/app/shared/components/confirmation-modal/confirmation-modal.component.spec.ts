@@ -1,9 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { By } from '@angular/platform-browser';
 import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
 import { ButtonDirective } from '@shared/directives/button.directive';
 import { ConfirmationModalComponent } from './confirmation-modal.component';
-import { By } from '@angular/platform-browser';
 
 describe('ConfirmationModalComponent', () => {
   let spectator: Spectator<ConfirmationModalComponent>;

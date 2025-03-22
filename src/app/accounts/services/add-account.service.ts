@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AccountFormModalComponent } from '@app/accounts/components/account-form-modal/account-form-modal.component';
-import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
 import { Observable, Subject } from 'rxjs';
+import { AccountFormModalComponent } from '../components/account-form-modal/account-form-modal.component';
+import { AccountsApiService } from './accounts-api.service';
 
 @Injectable({
   providedIn: 'root',

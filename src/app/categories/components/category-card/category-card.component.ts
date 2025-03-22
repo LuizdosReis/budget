@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import {
   Component,
   computed,
@@ -6,12 +7,11 @@ import {
   input,
   output,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ButtonDirective } from '@shared/directives/button.directive';
 import { Category } from '../../models/Category';
 import { Type } from '../../models/Type';
-import { NgClass } from '@angular/common';
-import { ButtonDirective } from '@shared/directives/button.directive';
 import { DeleteCategoryService } from '../../services/delete-category.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-category-card',

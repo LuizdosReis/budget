@@ -1,10 +1,10 @@
-import { AccountsApiService } from './accounts-api.service';
 import {
   createHttpFactory,
   HttpMethod,
   SpectatorHttp,
 } from '@ngneat/spectator';
 import { AccountData } from '../models/account-data';
+import { AccountsApiService } from './accounts-api.service';
 
 describe('AccountsApiService', () => {
   let spectator: SpectatorHttp<AccountsApiService>;

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { AuthService } from '@app/core/services/auth.service';
+import { AuthService } from '@core/services/auth.service';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {

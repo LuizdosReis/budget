@@ -6,9 +6,9 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { Account } from '../../models/account';
-import { EditAccountService } from '@app/accounts/services/edit-account.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Account } from '../../models/account';
+import { EditAccountService } from '../../services/edit-account.service';
 
 @Component({
   selector: 'app-account-card',

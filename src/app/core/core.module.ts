@@ -1,11 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { ButtonDirective } from '@shared/directives/button.directive';
+import { SharedModule } from '@shared/shared.module';
 import { PageComponent } from '../core/page/page/page.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
-import { SharedModule } from '@shared/shared.module';
-import { ButtonDirective } from '@shared/directives/button.directive';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [

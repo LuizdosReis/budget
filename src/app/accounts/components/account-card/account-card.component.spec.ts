@@ -1,6 +1,6 @@
-import { EditAccountService } from '@app/accounts/services/edit-account.service';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { of } from 'rxjs';
+import { EditAccountService } from '../../services/edit-account.service';
 import { Account } from './../../models/account';
 import { AccountCardComponent } from './account-card.component';
 

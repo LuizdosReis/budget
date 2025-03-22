@@ -1,12 +1,12 @@
-import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
+import { MatDialog } from '@angular/material/dialog';
 import {
   createServiceFactory,
   SpectatorService,
   SpyObject,
 } from '@ngneat/spectator';
 import { of } from 'rxjs';
+import { AccountsApiService } from '../services/accounts-api.service';
 import { AddAccountService } from './add-account.service';
-import { MatDialog } from '@angular/material/dialog';
 
 describe('AddAccountService', () => {
   let spectator: SpectatorService<AddAccountService>;

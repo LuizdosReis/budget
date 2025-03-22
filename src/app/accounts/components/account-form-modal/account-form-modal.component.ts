@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Account } from '@app/accounts/models/account';
+import { Account } from '../../models/account';
 import { AccountData } from '../../models/account-data';
 
 @Component({

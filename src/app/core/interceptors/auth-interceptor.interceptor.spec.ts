@@ -10,7 +10,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { AuthService } from '@app/core/services/auth.service';
+import { AuthService } from '@core/services/auth.service';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 
 describe('AuthInterceptorInterceptor', () => {

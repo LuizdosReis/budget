@@ -1,12 +1,12 @@
-import { EditAccountService } from './edit-account.service';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
-import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
 import { MatDialog } from '@angular/material/dialog';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { delay, Observable, of } from 'rxjs';
-import { Account } from '@app/accounts/models/account';
-import { AccountFormModalComponent } from '@app/accounts/components/account-form-modal/account-form-modal.component';
-import { DeleteAccountService } from '@app/accounts/services/delete-account.service';
-import { AccountData } from '@app/accounts/models/account-data';
+import { AccountFormModalComponent } from '../components/account-form-modal/account-form-modal.component';
+import { Account } from '../models/account';
+import { AccountData } from '../models/account-data';
+import { AccountsApiService } from './accounts-api.service';
+import { DeleteAccountService } from './delete-account.service';
+import { EditAccountService } from './edit-account.service';
 
 describe('EditAccountService', () => {
   let spectator: SpectatorService<EditAccountService>;

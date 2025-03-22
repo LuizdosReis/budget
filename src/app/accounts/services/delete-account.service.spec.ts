@@ -1,9 +1,9 @@
-import { DeleteAccountService } from './delete-account.service';
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { MatDialog } from '@angular/material/dialog';
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { delay, Observable, of } from 'rxjs';
-import { Account } from '@app/accounts/models/account';
-import { AccountsApiService } from '@app/accounts/services/accounts-api.service';
+import { Account } from '../models/account';
+import { AccountsApiService } from '../services/accounts-api.service';
+import { DeleteAccountService } from './delete-account.service';
 
 describe('DeleteAccountService', () => {
   let spectator: SpectatorService<DeleteAccountService>;
