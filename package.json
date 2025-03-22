@@ -57,6 +57,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "karma-junit-reporter": "^2.0.1",
+    "lint-staged": "^15.5.0",
     "postcss": "^8.4.13",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.0.24",
