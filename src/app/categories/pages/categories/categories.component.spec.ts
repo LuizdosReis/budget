@@ -79,4 +79,10 @@ describe('CategoriesComponent', () => {
     spectator.click(byTestId('add-button'));
     expect(categoriesApiService.getCategories).toHaveBeenCalledTimes(2);
   });
+
+  it('should call getCategories after category card emit onChanged', () => {
+    spectator.detectChanges();
+    spectator.triggerEventHandler('app-category-card', 'onChanged', undefined);
+    expect(categoriesApiService.getCategories).toHaveBeenCalledTimes(2);
+  });
 });

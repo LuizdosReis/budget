@@ -15,6 +15,7 @@
       @for (category of categories; track category.id) {
         <app-category-card
           [category]="category"
+          (onChanged)="loadCategories()"
           data-testid="category-card"></app-category-card>
       }
     }
