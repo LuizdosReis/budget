@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ButtonDirective } from '@shared/directives/button.directive';
-import { Category } from '../../models/Category';
-import { Type } from '../../models/Type';
+import { Category } from '../../models/category';
+import { Type } from '../../models/type';
 import { DeleteCategoryService } from '../../services/delete-category.service';
 
 @Component({

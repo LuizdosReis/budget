@@ -3,8 +3,8 @@ import {
   HttpMethod,
   SpectatorHttp,
 } from '@ngneat/spectator';
-import { Category } from '../models/Category';
-import { Type } from '../models/Type';
+import { Category } from '../models/category';
+import { Type } from '../models/type';
 import { CategoriesApiService } from './categories-api.service';
 
 describe('CategoriesApiService', () => {

@@ -4,7 +4,7 @@ import { UnsubComponent } from '@shared/components/unsub.component';
 import { ButtonDirective } from '@shared/directives/button.directive';
 import { CategoryCardComponent } from '../../components/category-card/category-card.component';
 import { CategoryCardSkeletonComponent } from '../../components/category-card-skeleton/category-card-skeleton.component';
-import { Category } from '../../models/Category';
+import { Category } from '../../models/category';
 import { CategoriesApiService } from '../../services/categories-api.service';
 
 @Component({

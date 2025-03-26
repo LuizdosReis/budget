@@ -1,9 +1,9 @@
 import { MatDialog } from '@angular/material/dialog';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { delay, Observable, of } from 'rxjs';
-import { Category } from '../models/Category';
-import { Type } from '../models/Type';
-import { CategoriesApiService } from '../services/categories-api.service';
+import { Category } from '../models/category';
+import { Type } from '../models/type';
+import { CategoriesApiService } from './categories-api.service';
 import { DeleteCategoryService } from './delete-category.service';
 
 describe('DeleteCategoryService', () => {

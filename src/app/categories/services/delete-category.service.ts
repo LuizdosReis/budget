@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, switchMap } from 'rxjs';
 import { ConfirmationModalComponent } from '@shared/components/confirmation-modal/confirmation-modal.component';
-import { Category } from '../models/Category';
-import { CategoriesApiService } from '../services/categories-api.service';
+import { Category } from '../models/category';
+import { CategoriesApiService } from './categories-api.service';
 
 @Injectable({
   providedIn: 'root',
