@@ -1,7 +1,9 @@
 <div class="flex flex-col gap-8">
   <div class="flex justify-between items-center">
     <h1 class="text-4xl font-bold">Categorias</h1>
-    <button appButton data-testid="add-button">Adicionar</button>
+    <button appButton data-testid="add-button" (click)="addAccount()">
+      Adicionar
+    </button>
   </div>
   <div class="flex flex-col gap-4">
     @if (!categoriesLoaded) {

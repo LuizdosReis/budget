@@ -1,0 +1,59 @@
+<div class="p-6 flex flex-col gap-6 relative">
+  <h3 class="text-2xl font-extrabold">Categoria</h3>
+  <button mat-dialog-close class="btn-icon-ghost-small absolute top-4 right-4">
+    <i class="fa-solid fa-xmark fa-xl"></i>
+  </button>
+  <form class="flex flex-col gap-6" [formGroup]="form">
+    <div class="flex flex-col gap-4">
+      <div>
+        <label for="name" class="input-label">Nome</label>
+        <input
+          id="name"
+          formControlName="name"
+          class="input-field"
+          required
+          autofocus />
+        @if (submitted && form.get('name')?.hasError('required')) {
+          <p data-testid="name-input-required-error" class="input-error">
+            Obrigatório
+          </p>
+        }
+        @if (submitted && form.get('name')?.hasError('minlength')) {
+          <p data-testid="name-input-min-length-error" class="input-error">
+            Deve ter no mínimo 5 caracteres
+          </p>
+        }
+        @if (submitted && form.get('name')?.hasError('maxlength')) {
+          <p data-testid="name-input-max-length-error" class="input-error">
+            Deve ter no máximo 50 caracteres
+          </p>
+        }
+      </div>
+      <div>
+        <label for="type" class="input-label">Tipo</label>
+        <div class="input-select">
+          <select id="type" formControlName="type">
+            @for (type of types; track type.type) {
+              <option [ngValue]="type.type">{{ type.name }}</option>
+            }
+          </select>
+        </div>
+        @if (submitted && form.get('type')?.hasError('required')) {
+          <p data-testid="type-select-required-error" class="input-error">
+            Obrigatório
+          </p>
+        }
+      </div>
+    </div>
+    <div class="flex justify-end gap-2">
+      <button appButton mat-dialog-close variant="secondary">Cancelar</button>
+      <button
+        appButton
+        data-testid="submit-button"
+        [isLoading]="isSubmitting"
+        (click)="handleSubmitClick()">
+        Adicionar
+      </button>
+    </div>
+  </form>
+</div>
