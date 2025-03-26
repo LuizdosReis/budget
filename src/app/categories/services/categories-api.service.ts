@@ -23,4 +23,8 @@ export class CategoriesApiService {
   post(category: CategoryRequest): Observable<void> {
     return this.http.post<void>(this.URL, category);
   }
+
+  put(id: string, category: CategoryRequest): Observable<void> {
+    return this.http.put<void>(`${this.URL}/${id}`, category);
+  }
 }

@@ -60,4 +60,19 @@ describe('CategoriesApiService', () => {
     const req = spectator.expectOne(spectator.service.URL, HttpMethod.POST);
     expect(req.request.body).toEqual(category);
   });
+
+  it('put should make a PUT call with category id in the url and category in the body', () => {
+    const id = 'ecdfd059-c798-43f2-8daf-9e8692216632';
+    const category: CategoryRequest = {
+      name: 'Expense',
+      type: Type.EXPENSE,
+    };
+
+    spectator.service.put(id, category).subscribe();
+    const req = spectator.expectOne(
+      `${spectator.service.URL}/${id}`,
+      HttpMethod.PUT
+    );
+    expect(req.request.body).toEqual(category);
+  });
 });

@@ -12,6 +12,7 @@ import { ButtonDirective } from '@shared/directives/button.directive';
 import { Category } from '../../models/category';
 import { Type } from '../../models/type';
 import { DeleteCategoryService } from '../../services/delete-category.service';
+import { EditCategoryService } from '../../services/edit-category.service';
 
 @Component({
   selector: 'app-category-card',
@@ -22,6 +23,7 @@ import { DeleteCategoryService } from '../../services/delete-category.service';
 export class CategoryCardComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly deleteCategoryService = inject(DeleteCategoryService);
+  private readonly editCategoryService = inject(EditCategoryService);
 
   category = input.required<Category>();
   onChanged = output<void>();
@@ -37,6 +39,13 @@ export class CategoryCardComponent {
 
   protected delete() {
     this.deleteCategoryService
+      .execute(this.category())
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.onChanged.emit());
+  }
+
+  protected edit() {
+    this.editCategoryService
       .execute(this.category())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.onChanged.emit());

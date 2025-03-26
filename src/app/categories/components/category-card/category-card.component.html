@@ -24,7 +24,13 @@
       (click)="delete()">
       <i class="fa-regular fa-trash-can"></i>
     </button>
-    <button appButton variant="secondary" color="primary" size="small">
+    <button
+      data-testid="edit-button"
+      appButton
+      variant="secondary"
+      color="primary"
+      size="small"
+      (click)="edit()">
       <i class="fa-regular fa-pen-to-square"></i>
     </button>
   </div>

@@ -91,4 +91,18 @@ describe('CategoryFormModalComponent', () => {
       spectator.query(byTestId('name-input-min-length-error'))
     ).toBeVisible();
   });
+
+  it("should show 'alterar' button text when is editing", () => {
+    data.category = {
+      id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+      name: 'Expense',
+      type: Type.EXPENSE,
+    };
+    spectator = createComponent();
+    expect(spectator.query(byTestId('submit-button'))).toHaveText('Alterar');
+  });
+
+  it("should show 'adicionar' button text when is adding", () => {
+    expect(spectator.query(byTestId('submit-button'))).toHaveText('Adicionar');
+  });
 });

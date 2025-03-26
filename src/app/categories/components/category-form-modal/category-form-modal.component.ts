@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { ButtonDirective } from '@shared/directives/button.directive';
 import { Category } from '../../models/category';
 import { Type } from '../../models/type';
@@ -14,7 +14,7 @@ import { Type } from '../../models/type';
 @Component({
   selector: 'app-category-form-modal',
   standalone: true,
-  imports: [ButtonDirective, ReactiveFormsModule],
+  imports: [ButtonDirective, ReactiveFormsModule, MatDialogClose],
   templateUrl: './category-form-modal.component.html',
 })
 export class CategoryFormModalComponent {
@@ -26,6 +26,7 @@ export class CategoryFormModalComponent {
   }>;
   protected submitted = false;
   protected isSubmitting = false;
+  protected isEditing = false;
   protected readonly types: { type: Type; name: string }[] = [
     { type: Type.EXPENSE, name: 'Despesas' },
     { type: Type.INCOME, name: 'Receitas' },
@@ -48,6 +49,7 @@ export class CategoryFormModalComponent {
     });
 
     if (data?.category) {
+      this.isEditing = true;
       this.form.patchValue(data.category);
     }
   }

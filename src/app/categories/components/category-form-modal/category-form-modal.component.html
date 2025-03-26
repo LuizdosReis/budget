@@ -52,7 +52,7 @@
         data-testid="submit-button"
         [isLoading]="isSubmitting"
         (click)="handleSubmitClick()">
-        Adicionar
+        {{ isEditing ? 'Alterar' : 'Adicionar' }}
       </button>
     </div>
   </form>
