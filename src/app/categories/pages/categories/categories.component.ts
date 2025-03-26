@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { UnsubComponent } from '@shared/components/unsub.component';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ButtonDirective } from '@shared/directives/button.directive';
 import { CategoryCardComponent } from '../../components/category-card/category-card.component';
 import { CategoryCardSkeletonComponent } from '../../components/category-card-skeleton/category-card-skeleton.component';
@@ -18,26 +17,23 @@ import { CategoriesApiService } from '../../services/categories-api.service';
   ],
   templateUrl: './categories.component.html',
 })
-export class CategoriesComponent extends UnsubComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
   private readonly categoriesApiService = inject(CategoriesApiService);
   private readonly addCategoryService = inject(AddCategoryService);
+  private readonly destroyRef = inject(DestroyRef);
 
   protected categories: Category[] = [];
   protected categoriesLoaded = false;
 
-  constructor() {
-    super();
-  }
-
   ngOnInit(): void {
-    this.loadAccounts();
+    this.loadCategories();
   }
 
-  protected loadAccounts(): void {
+  protected loadCategories(): void {
     this.categoriesLoaded = false;
     this.categoriesApiService
       .getCategories()
-      .pipe(takeUntil(this.notifier))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((categories: Category[]) => {
         this.categories = categories;
         this.categoriesLoaded = true;
@@ -47,7 +43,7 @@ export class CategoriesComponent extends UnsubComponent implements OnInit {
   protected addAccount(): void {
     this.addCategoryService
       .execute()
-      .pipe(takeUntil(this.notifier))
-      .subscribe(() => this.loadAccounts());
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.loadCategories());
   }
 }
