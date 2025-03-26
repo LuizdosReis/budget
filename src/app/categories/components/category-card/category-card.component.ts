@@ -20,8 +20,8 @@ import { DeleteCategoryService } from '../../services/delete-category.service';
   templateUrl: './category-card.component.html',
 })
 export class CategoryCardComponent {
-  private destroyRef = inject(DestroyRef);
-  private deleteCategoryService = inject(DeleteCategoryService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly deleteCategoryService = inject(DeleteCategoryService);
 
   category = input.required<Category>();
   onChanged = output<void>();
