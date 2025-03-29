@@ -5,6 +5,7 @@
 **/dist
 **/.vscode
 **/e2e
+/.angular/cache
 README.md
 docker-compose.yml
 dockerfile
