@@ -1,0 +1,12 @@
+:80 {
+    log {
+        format console
+    }
+
+    reverse_proxy /api/* {
+        to {$BACKEND_HOST}
+        header_up Host {upstream_hostport}
+    }
+
+    reverse_proxy {$FRONTEND_HOST}
+}
