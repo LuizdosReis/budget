@@ -33,6 +33,11 @@ const routes: Routes = [
           ),
         canActivate: [AuthGuard],
       },
+      {
+        path: 'tags',
+        loadChildren: () =>
+          import('./tags/tags.module').then(m => m.TagsModule),
+      },
     ],
   },
   {

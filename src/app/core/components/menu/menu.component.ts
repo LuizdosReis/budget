@@ -23,5 +23,10 @@ export class MenuComponent {
       name: 'Categories',
       icon: 'fa-tag',
     },
+    {
+      link: '/tags',
+      name: 'Tags',
+      icon: 'fa-tags',
+    },
   ];
 }

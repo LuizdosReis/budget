@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-4xl font-bold">Tags</h1>
+    <button appButton data-testid="add-button">Adicionar</button>
+  </div>
+  <div class="flex flex-col gap-4">
+    @if (!tagsLoaded) {
+      @for (item of [1, 2, 3]; track item) {
+        <app-tag-card-skeleton
+          data-testid="tag-card-skeleton"></app-tag-card-skeleton>
+      }
+    } @else {
+      @for (tag of tags; track tag.id) {
+        <app-tag-card [tag]="tag" data-testid="tag-card"></app-tag-card>
+      }
+    }
+  </div>
+</div>
