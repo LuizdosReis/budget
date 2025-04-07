@@ -4,6 +4,7 @@ import {
   SpectatorHttp,
 } from '@ngneat/spectator';
 import { Tag } from '../models/tag';
+import { TagRequest } from '../models/tag-request';
 import { TagsApiService } from './tags-api.service';
 
 describe('TagsApiService', () => {
@@ -37,5 +38,15 @@ describe('TagsApiService', () => {
     const req = spectator.expectOne(spectator.service.URL, HttpMethod.GET);
 
     req.flush(expectedTags);
+  });
+
+  it('post should make a POST call with tag in the body', () => {
+    const tag: TagRequest = {
+      name: 'Tag_name',
+    };
+
+    spectator.service.post(tag).subscribe();
+    const req = spectator.expectOne(spectator.service.URL, HttpMethod.POST);
+    expect(req.request.body).toEqual(tag);
   });
 });

@@ -8,12 +8,14 @@ import {
 } from '@ngneat/spectator';
 import { delay, of } from 'rxjs';
 import { Tag } from '../../models/tag';
+import { AddTagService } from '../../services/add-tag.service';
 import { TagsApiService } from '../../services/tags-api.service';
 import { TagsComponent } from './tags.component';
 
 describe('TagsComponent', () => {
   let spectator: Spectator<TagsComponent>;
   let tagsApiService: SpyObject<TagsApiService>;
+  let addTagService: SpyObject<AddTagService>;
 
   const tags: Tag[] = [
     {
@@ -29,7 +31,7 @@ describe('TagsComponent', () => {
   const createComponent = createComponentFactory<TagsComponent>({
     component: TagsComponent,
     providers: [],
-    mocks: [TagsApiService],
+    mocks: [TagsApiService, AddTagService],
     shallow: true,
     detectChanges: false,
   });
@@ -37,6 +39,7 @@ describe('TagsComponent', () => {
   beforeEach(() => {
     spectator = createComponent();
     tagsApiService = spectator.inject(TagsApiService);
+    addTagService = spectator.inject(AddTagService);
     tagsApiService.getTags.and.returnValue(of(tags));
   });
 
@@ -56,5 +59,16 @@ describe('TagsComponent', () => {
   it('should have tag cards for each tag returned by getTags', () => {
     spectator.detectChanges();
     expect(spectator.queryAll(byTestId('tag-card')).length).toBe(tags.length);
+  });
+
+  it('should call addTagService when add button is clicked', () => {
+    spectator.click(byTestId('add-button'));
+    expect(addTagService.execute).toHaveBeenCalled();
+  });
+
+  it('should call addTagService after clicking add button', () => {
+    addTagService.execute.and.returnValue(of(undefined));
+    spectator.click(byTestId('add-button'));
+    expect(tagsApiService.getTags).toHaveBeenCalledTimes(2);
   });
 });

@@ -4,6 +4,7 @@ import { ButtonDirective } from '@shared/directives/button.directive';
 import { TagCardComponent } from '../../components/tag-card/tag-card.component';
 import { TagCardSkeletonComponent } from '../../components/tag-card-skeleton/tag-card-skeleton.component';
 import { Tag } from '../../models/tag';
+import { AddTagService } from '../../services/add-tag.service';
 import { TagsApiService } from '../../services/tags-api.service';
 
 @Component({
@@ -15,6 +16,7 @@ import { TagsApiService } from '../../services/tags-api.service';
 export class TagsComponent implements OnInit {
   private readonly tagsApiService = inject(TagsApiService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly addTagService = inject(AddTagService);
 
   protected tags: Tag[] = [];
   protected tagsLoaded = false;
@@ -32,5 +34,12 @@ export class TagsComponent implements OnInit {
         this.tags = tags;
         this.tagsLoaded = true;
       });
+  }
+
+  protected addTag(): void {
+    this.addTagService
+      .execute()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.loadTags());
   }
 }
