@@ -33,7 +33,7 @@ describe('CategoriesComponent', () => {
   const createComponent = createComponentFactory<CategoriesComponent>({
     component: CategoriesComponent,
     providers: [],
-    mocks: [CategoriesApiService, AddCategoryService, AddCategoryService],
+    mocks: [CategoriesApiService, AddCategoryService],
     shallow: true,
     detectChanges: false,
   });
