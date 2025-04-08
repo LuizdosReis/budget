@@ -71,4 +71,10 @@ describe('TagsComponent', () => {
     spectator.click(byTestId('add-button'));
     expect(tagsApiService.getTags).toHaveBeenCalledTimes(2);
   });
+
+  it('should call getCategories after category card emit onChanged', () => {
+    spectator.detectChanges();
+    spectator.triggerEventHandler('app-tag-card', 'onChanged', undefined);
+    expect(tagsApiService.getTags).toHaveBeenCalledTimes(2);
+  });
 });

@@ -25,7 +25,7 @@ export class TagsComponent implements OnInit {
     this.loadTags();
   }
 
-  private loadTags(): void {
+  protected loadTags(): void {
     this.tagsLoaded = false;
     this.tagsApiService
       .getTags()

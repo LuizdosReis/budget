@@ -18,4 +18,8 @@ export class TagsApiService {
   post(category: TagRequest): Observable<void> {
     return this.http.post<void>(this.URL, category);
   }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.URL}/${id}`);
+  }
 }
