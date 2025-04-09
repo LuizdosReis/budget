@@ -2,6 +2,7 @@ import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
 import { of } from 'rxjs';
 import { Tag } from '../../models/tag';
 import { DeleteTagService } from '../../services/delete-tag.service';
+import { EditTagService } from '../../services/edit-tag.service';
 import { TagCardComponent } from './tag-card.component';
 
 describe('TagCardComponent', () => {
@@ -9,7 +10,7 @@ describe('TagCardComponent', () => {
 
   const createComponent = createComponentFactory<TagCardComponent>({
     component: TagCardComponent,
-    mocks: [DeleteTagService],
+    mocks: [DeleteTagService, EditTagService],
   });
 
   const tag: Tag = {
@@ -42,6 +43,20 @@ describe('TagCardComponent', () => {
     const spy = spyOn(spectator.component.onChanged, 'emit');
     deleteTagService.execute.and.returnValue(of({}));
     spectator.click(byTestId('delete-button'));
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should call edit service when edit button is clicked', () => {
+    const editTagService = spectator.inject(EditTagService);
+    spectator.click(byTestId('edit-button'));
+    expect(editTagService.execute).toHaveBeenCalledWith(tag);
+  });
+
+  it('should emit onChanged event when edit tag is executed ', () => {
+    const editTagService = spectator.inject(EditTagService);
+    const spy = spyOn(spectator.component.onChanged, 'emit');
+    editTagService.execute.and.returnValue(of({}));
+    spectator.click(byTestId('edit-button'));
     expect(spy).toHaveBeenCalled();
   });
 });

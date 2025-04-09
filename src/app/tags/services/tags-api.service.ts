@@ -15,11 +15,15 @@ export class TagsApiService {
     return this.http.get<Tag[]>(this.URL);
   }
 
-  post(category: TagRequest): Observable<void> {
-    return this.http.post<void>(this.URL, category);
+  post(tag: TagRequest): Observable<void> {
+    return this.http.post<void>(this.URL, tag);
   }
 
   delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.URL}/${id}`);
+  }
+
+  put(id: string, tag: TagRequest): Observable<void> {
+    return this.http.put<void>(`${this.URL}/${id}`, tag);
   }
 }

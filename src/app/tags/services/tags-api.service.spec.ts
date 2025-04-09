@@ -55,4 +55,18 @@ describe('TagsApiService', () => {
     spectator.service.delete(id).subscribe();
     spectator.expectOne(`${spectator.service.URL}/${id}`, HttpMethod.DELETE);
   });
+
+  it('put should make a PUT call with tag id in the url and tag in the body', () => {
+    const id = 'ecdfd059-c798-43f2-8daf-9e8692216632';
+    const tag: TagRequest = {
+      name: 'tag_name',
+    };
+
+    spectator.service.put(id, tag).subscribe();
+    const req = spectator.expectOne(
+      `${spectator.service.URL}/${id}`,
+      HttpMethod.PUT
+    );
+    expect(req.request.body).toEqual(tag);
+  });
 });
