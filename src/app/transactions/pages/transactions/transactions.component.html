@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-8">
+  <div class="flex justify-between items-center">
+    <h1 class="text-4xl font-bold">Transacoes</h1>
+    <button appButton data-testid="add-button">Adicionar</button>
+  </div>
+  <div class="flex flex-col gap-4">
+    @if (!transactionsLoaded) {
+      @for (item of [1, 2, 3]; track item) {
+        <app-transaction-card-skeleton
+          data-testid="transaction-card-skeleton"></app-transaction-card-skeleton>
+      }
+    } @else {
+      @for (transaction of transactions; track transaction.id) {
+        <app-transaction-card
+          [transaction]="transaction"
+          data-testid="transaction-card">
+        </app-transaction-card>
+      }
+    }
+  </div>
+</div>
