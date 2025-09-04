@@ -14,6 +14,11 @@ export class MenuComponent {
       icon: 'fa-chart-line',
     },
     {
+      link: '/transactions',
+      name: 'Transações',
+      icon: 'fa-list-check',
+    },
+    {
       link: '/accounts',
       name: 'Contas',
       icon: 'fa-building-columns',

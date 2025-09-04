@@ -38,6 +38,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./tags/tags.module').then(m => m.TagsModule),
       },
+      {
+        path: 'transactions',
+        loadChildren: () =>
+          import('./transactions/transactions.module').then(
+            m => m.TransactionsModule
+          ),
+      },
     ],
   },
   {

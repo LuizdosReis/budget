@@ -1,0 +1,21 @@
+<button
+  class="bg-white border shadow-lg p-4 rounded-md border-slate-200 h-full w-full truncate whitespace-nowrap flex justify-between">
+  <div class="flex flex-col gap-2 justify-between">
+    <h2 data-testid="description" class="text-lg font-medium truncate">
+      {{ transaction().description }}
+    </h2>
+    <p data-testid="account">
+      {{ transaction().account.name }}
+    </p>
+  </div>
+  <div class="flex gap-2">
+    <div class="flex flex-col gap-2 justify-between items-end">
+      <p data-testid="amount">
+        {{ transaction().amount | currency: transaction().account.currency }}
+      </p>
+      <p data-testid="status">
+        {{ statusDescription() }}
+      </p>
+    </div>
+  </div>
+</button>
