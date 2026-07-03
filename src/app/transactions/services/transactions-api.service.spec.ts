@@ -4,7 +4,7 @@ import {
   SpectatorHttp,
 } from '@ngneat/spectator';
 import { Page } from '@shared/models/page';
-import { Transaction, TransactionStatus } from '../models/transaction';
+import { Transaction, TransactionStatus, Type } from '../models/transaction';
 import { TransactionsApiService } from './transactions-api.service';
 
 describe('TransactionsApiService', () => {
@@ -41,7 +41,7 @@ describe('TransactionsApiService', () => {
           category: {
             id: '60e7f6bc-8051-494e-a4ae-57d91178cb16',
             name: 'category',
-            type: 'INCOME',
+            type: Type.INCOME,
           },
           deleted: false,
         },
@@ -65,7 +65,7 @@ describe('TransactionsApiService', () => {
           category: {
             id: '60e7f6bc-8051-494e-a4ae-57d91178cb16',
             name: 'category',
-            type: 'INCOME',
+            type: Type.INCOME,
           },
           deleted: false,
         },

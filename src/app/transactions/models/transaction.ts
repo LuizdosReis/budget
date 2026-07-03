@@ -10,10 +10,15 @@ interface Account {
   currency: string;
 }
 
+export enum Type {
+  INCOME = 'INCOME',
+  EXPENSE = 'EXPENSE',
+}
+
 interface Category {
   id: string;
   name: string;
-  type: string;
+  type: Type;
 }
 
 interface Tag {

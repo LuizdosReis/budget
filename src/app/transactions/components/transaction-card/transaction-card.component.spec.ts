@@ -1,5 +1,5 @@
 import { byTestId, createComponentFactory, Spectator } from '@ngneat/spectator';
-import { Transaction, TransactionStatus } from '../../models/transaction';
+import { Transaction, TransactionStatus, Type } from '../../models/transaction';
 import { TransactionCardComponent } from './transaction-card.component';
 
 describe('TransactionCardComponent', () => {
@@ -24,12 +24,16 @@ describe('TransactionCardComponent', () => {
         id: 'b58855ea-f9de-442e-83d8-5f91fee548ff',
         name: 'tag',
       },
+      {
+        id: 'b58855ea-f9de-442e-83d8-5f91fee548fs',
+        name: 'tag 2',
+      },
     ],
     amount: 10,
     category: {
       id: '60e7f6bc-8051-494e-a4ae-57d91178cb16',
       name: 'category',
-      type: 'INCOME',
+      type: Type.EXPENSE,
     },
     deleted: false,
   };
@@ -44,36 +48,43 @@ describe('TransactionCardComponent', () => {
     expect(spectator.component).toBeTruthy();
   });
 
-  it('should display transaction info', () => {
+  it('should display transaction description', () => {
     expect(spectator.query(byTestId('description'))).toHaveText(
       transaction.description
     );
+  });
+
+  it('should display account name', () => {
     expect(spectator.query(byTestId('account'))).toHaveText(
       transaction.account.name
     );
-    expect(spectator.query(byTestId('amount'))).toHaveText(
-      transaction.amount.toString()
-    );
   });
 
-  [
-    { status: TransactionStatus.REGISTERED, description: 'Registrada' },
-    { status: TransactionStatus.COMPLETED, description: 'Efetuada' },
-    { status: TransactionStatus.SCHEDULED, description: 'Agendada' },
-  ].forEach(
-    ({
-      status,
-      description,
-    }: {
-      status: TransactionStatus;
-      description: string;
-    }) => {
-      it(`should display description ${description} to status ${status}`, () => {
-        spectator.setInput('transaction', { ...transaction, status });
-        expect(spectator.query(byTestId('status'))).toHaveText(description);
-      });
-    }
-  );
+  it('should display tag names', () => {
+    const tags = spectator.queryAll(byTestId('tag'));
+
+    expect(tags.length).toBe(2);
+
+    expect(tags[0]).toHaveText('tag');
+    expect(tags[1]).toHaveText('tag 2');
+  });
+
+  it('should display the tag separator when transaction has tags', () => {
+    expect(spectator.query(byTestId('tag-separator'))).toExist();
+  });
+
+  it('should not display the tag separator when transaction has no tags', () => {
+    spectator.setInput('transaction', {
+      ...transaction,
+      tags: [],
+    });
+
+    expect(spectator.query(byTestId('tag-separator'))).not.toExist();
+  });
+
+  it('should display the formatted date correctly', () => {
+    expect(spectator.query(byTestId('date'))).toHaveText('Mov. Tue, 1 de Apr');
+  });
 
   [
     { currency: 'EUR', expectedText: '€10.00' },
@@ -92,6 +103,104 @@ describe('TransactionCardComponent', () => {
           account: { ...transaction.account, currency },
         });
         expect(spectator.query(byTestId('amount'))).toHaveText(expectedText);
+      });
+    }
+  );
+
+  it('should have text-success-700 class when category type is income ', () => {
+    spectator.setInput('transaction', {
+      ...transaction,
+      category: { ...transaction.category, type: Type.INCOME },
+    });
+
+    expect(spectator.query(byTestId('amount'))).toHaveClass('text-success-700');
+  });
+
+  it('should not have text-success-700 class when category type is not income ', () => {
+    spectator.setInput('transaction', {
+      ...transaction,
+      category: { ...transaction.category, type: Type.EXPENSE },
+    });
+
+    expect(spectator.query(byTestId('amount'))).not.toHaveClass(
+      'text-success-700'
+    );
+  });
+
+  [
+    {
+      type: Type.INCOME,
+      expectedSign: '+',
+    },
+    {
+      type: Type.EXPENSE,
+      expectedSign: '-',
+    },
+  ].forEach(({ type, expectedSign }: { type: Type; expectedSign: string }) => {
+    it(`should display a ${expectedSign} sign when the category type is an ${type}`, () => {
+      spectator.setInput('transaction', {
+        ...transaction,
+        category: { ...transaction.category, type },
+      });
+
+      expect(spectator.query(byTestId('amount'))).toHaveText(
+        `${expectedSign}€10.00`
+      );
+    });
+  });
+
+  [
+    {
+      status: TransactionStatus.REGISTERED,
+      type: Type.INCOME,
+      label: 'registrado',
+      icon: 'fa-clock-rotate-left fa-solid',
+      classes: 'bg-warning-50 border-warning-100 text-warning-700',
+    },
+    {
+      status: TransactionStatus.COMPLETED,
+      type: Type.INCOME,
+      label: 'recebido',
+      icon: 'fa-solid fa-check',
+      classes: 'bg-success-50 border-success-100 text-success-700',
+    },
+    {
+      status: TransactionStatus.COMPLETED,
+      type: Type.EXPENSE,
+      label: 'pago',
+      icon: 'fa-solid fa-check-double',
+      classes: 'bg-danger-50 border-danger-100 text-danger-700',
+    },
+    {
+      status: TransactionStatus.SCHEDULED,
+      type: Type.EXPENSE,
+      label: 'agendado',
+      icon: 'fa-solid fa-calendar-days',
+      classes: 'bg-info-50 border-info-100 text-info-700',
+    },
+  ].forEach(
+    ({
+      status,
+      label,
+      type,
+      icon,
+      classes,
+    }: {
+      status: TransactionStatus;
+      label: string;
+      type: Type;
+      icon: string;
+      classes: string;
+    }) => {
+      it(`should display description ${label} with classes ${classes} and ${icon} to status ${status} with category type ${type}`, () => {
+        spectator.setInput('transaction', {
+          ...transaction,
+          status,
+          category: { ...transaction.category, type },
+        });
+        expect(spectator.query(byTestId('status'))).toHaveText(label);
+        expect(spectator.query(byTestId('status'))).toHaveClass(classes);
+        expect(spectator.query('[data-testid="status"] i')).toHaveClass(icon);
       });
     }
   );

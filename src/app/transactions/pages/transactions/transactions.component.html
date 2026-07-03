@@ -4,18 +4,18 @@
     <button appButton data-testid="add-button">Adicionar</button>
   </div>
   <div class="flex flex-col gap-4">
+    @for (transaction of transactions; track transaction.id) {
+      <app-transaction-card
+        [transaction]="transaction"
+        data-testid="transaction-card">
+      </app-transaction-card>
+    }
     @if (!transactionsLoaded) {
-      @for (item of [1, 2, 3]; track item) {
+      @for (item of skeletons; track item) {
         <app-transaction-card-skeleton
           data-testid="transaction-card-skeleton"></app-transaction-card-skeleton>
       }
-    } @else {
-      @for (transaction of transactions; track transaction.id) {
-        <app-transaction-card
-          [transaction]="transaction"
-          data-testid="transaction-card">
-        </app-transaction-card>
-      }
     }
+    <div #infiniteScrollAnchor>Test</div>
   </div>
 </div>
