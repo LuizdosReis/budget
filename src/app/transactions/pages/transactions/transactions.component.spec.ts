@@ -18,7 +18,7 @@ describe('TransactionsComponent', () => {
   const transactionPage: Page<Transaction> = {
     content: [
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-9e6692216632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -42,7 +42,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216631',
+        id: 'ecdfd059-c798-43f2-8daf-9e8672216631',
         description: 'description 2',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -66,7 +66,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-9e8692516632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -90,7 +90,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-9e8642216632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -114,7 +114,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-918692216632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -138,7 +138,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-928692216632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -162,7 +162,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-938692216632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -186,7 +186,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-9e8692116632',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -210,7 +210,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-9e8692216232',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -234,7 +234,7 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
       {
-        id: 'ecdfd059-c798-43f2-8daf-9e8692216632',
+        id: 'ecdfd059-c798-43f2-8daf-9e8692216642',
         description: 'description',
         status: TransactionStatus.REGISTERED,
         date: '2025-04-01',
@@ -258,12 +258,12 @@ describe('TransactionsComponent', () => {
         deleted: false,
       },
     ],
-    totalElements: 2,
+    totalElements: 10,
     totalPages: 1,
     last: false,
     size: 2,
     number: 0,
-    numberOfElements: 2,
+    numberOfElements: 10,
     first: true,
     empty: false,
   };

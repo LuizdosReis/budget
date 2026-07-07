@@ -11,7 +11,7 @@
       </app-transaction-card>
     }
     @if (!transactionsLoaded) {
-      @for (item of skeletons; track item) {
+      @for (item of [1, 2, 3]; track item) {
         <app-transaction-card-skeleton
           data-testid="transaction-card-skeleton"></app-transaction-card-skeleton>
       }
