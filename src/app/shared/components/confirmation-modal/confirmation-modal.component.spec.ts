@@ -69,6 +69,7 @@ describe('ConfirmationModalComponent', () => {
 
   it('should set primary color when data is not provided', () => {
     data.confirmationColor = undefined;
+    spectator.detectChanges();
     expect(
       spectator.debugElement.query(By.css('[data-testid="confirmationButton"]'))
         .nativeElement
