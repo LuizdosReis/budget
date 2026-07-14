@@ -3,6 +3,10 @@
     <h1 class="text-4xl font-bold">Transações</h1>
     <button appButton data-testid="add-button">Adicionar</button>
   </div>
+  <app-search-input
+    placeholder="Pesquisar transações"
+    [initialValue]="filters().searchTerm"
+    (searchChange)="onSearchTransaction($event)" />
   <div class="flex flex-col gap-4">
     @for (transaction of transactions; track transaction.id) {
       <app-transaction-card
@@ -16,6 +20,15 @@
           data-testid="transaction-card-skeleton"></app-transaction-card-skeleton>
       }
     }
-    <div #infiniteScrollAnchor>Test</div>
   </div>
+  @if (!lastPage()) {
+    <button
+      appButton
+      variant="secondary"
+      (click)="onSeeMore()"
+      data-testid="see-more">
+      <i class="ti ti-refresh"></i>
+      Carregar mais transações
+    </button>
+  }
 </div>

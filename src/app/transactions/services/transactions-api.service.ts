@@ -11,8 +11,19 @@ export class TransactionsApiService {
   private readonly http = inject(HttpClient);
   readonly URL = '/api/transactions';
 
-  getTransactions(): Observable<Page<Transaction>> {
-    const params = new HttpParams().append('nonDeleted', true);
+  getTransactions({
+    searchTerm,
+    page,
+  }: {
+    searchTerm?: string;
+    page: number;
+  }): Observable<Page<Transaction>> {
+    let params = new HttpParams()
+      .append('nonDeleted', true)
+      .append('page', page);
+
+    params = searchTerm ? params.append('searchTerm', searchTerm) : params;
+
     return this.http.get<Page<Transaction>>(this.URL, { params });
   }
 }
